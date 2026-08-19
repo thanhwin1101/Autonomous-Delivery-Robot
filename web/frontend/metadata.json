@@ -1,0 +1,6 @@
+{
+  "name": "AGV Fleet Manager",
+  "description": "Glacier Fleet Control - Live tracking, monitoring, and dispatch management for Autonomous Guided Vehicles (AGVs) in industrial warehouses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

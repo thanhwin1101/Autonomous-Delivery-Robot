@@ -1,0 +1,46 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "phoneIndex": {
+      "$phoneNormalized": {
+        ".read": "true",
+        ".write": "auth != null && (!data.exists() || data.child('uid').val() == auth.uid)"
+      }
+    },
+    "tasks": {
+      "$senderUid": {
+        ".read": "auth != null && auth.uid == $senderUid",
+        ".write": "auth != null && auth.uid == $senderUid"
+      }
+    },
+    "recipientTasks": {
+      "$receiverUid": {
+        ".read": "auth != null && auth.uid == $receiverUid",
+        "$taskId": {
+          ".write": "auth != null"
+        }
+      }
+    },
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        "$notificationId": {
+          ".write": "auth != null"
+        }
+      }
+    },
+    "robotSlots": {
+      "defaultRobot": {
+        ".read": "auth != null",
+        "$slotId": {
+          ".write": "auth != null && (!data.exists() || data.child('status').val() == 'available' || auth.uid != null)"
+        }
+      }
+    }
+  }
+}

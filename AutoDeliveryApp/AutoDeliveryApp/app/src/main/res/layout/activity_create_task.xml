@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF8FF">
+
+    <!-- Background Map -->
+    <org.maplibre.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- Map overlay gradient (Optional, implemented via an ImageView or View if needed) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/bg_top_gradient"/>
+
+    <!-- Zoom Controls -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/bg_zoom_controls"
+        android:elevation="4dp">
+        <ImageView
+            android:id="@+id/btnZoomIn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_plus"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Zoom In"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E1E2EC"/>
+        <ImageView
+            android:id="@+id/btnZoomOut"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_minus"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Zoom Out"/>
+    </LinearLayout>
+
+    <!-- Floating Top Left Back Button -->
+    <FrameLayout
+        android:id="@+id/btnBackWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="top|start">
+        <ImageView
+            android:id="@+id/btnBackCreateTask"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_back"
+            android:background="@drawable/bg_circle_translucent"
+            android:padding="10dp"
+            android:contentDescription="Back"/>
+    </FrameLayout>
+
+    <!-- Floating Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="Create Delivery"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#003D9B"
+        android:background="@drawable/bg_title_pill"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"/>
+
+    <!-- Bottom Sheet -->
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg_bottom_sheet_rounded"
+        android:elevation="16dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_peekHeight="400dp"
+        app:behavior_hideable="false">
+
+        <!-- Handle -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="#C3C6D6"/>
+
+        <!-- Scrollable Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingBottom="24dp"> <!-- space at bottom of scroll content -->
+
+                <!-- Route Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_white"
+                    android:padding="16dp"
+                    android:elevation="2dp"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Icons and Connecting Line -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal"
+                            android:layout_marginEnd="12dp">
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_circle_dot"
+                                app:tint="#003D9B"
+                                android:layout_marginTop="12dp"/>
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:background="#C3C6D6"
+                                android:layout_marginVertical="4dp"/>
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_circle_dot"
+                                app:tint="#7B2600"
+                                android:layout_marginBottom="12dp"/>
+                        </LinearLayout>
+
+                        <!-- Input Fields -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            
+                            <!-- Pickup -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_input_field"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="12dp"
+                                android:layout_marginBottom="12dp">
+                                <AutoCompleteTextView
+                                    android:id="@+id/etPickup"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@null"
+                                    android:hint="Pickup Point"
+                                    android:textSize="14sp"
+                                    android:textColor="#191B23"
+                                    android:textColorHint="#737685"
+                                    android:singleLine="true"
+                                    android:popupBackground="@drawable/bg_dropdown"
+                                    android:dropDownVerticalOffset="8dp"
+                                    android:dropDownWidth="match_parent"/>
+                                <ImageView
+                                    android:id="@+id/btnMyLocation"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:src="@android:drawable/ic_menu_mylocation"
+                                    android:padding="6dp"
+                                    android:background="?attr/selectableItemBackgroundBorderless"
+                                    app:tint="#003D9B"/>
+                            </LinearLayout>
+
+                            <!-- Dropoff -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_input_field"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="12dp">
+                                <AutoCompleteTextView
+                                    android:id="@+id/etDropoff"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@null"
+                                    android:hint="Where to?"
+                                    android:textSize="14sp"
+                                    android:textColor="#191B23"
+                                    android:textColorHint="#737685"
+                                    android:singleLine="true"
+                                    android:popupBackground="@drawable/bg_dropdown"
+                                    android:dropDownVerticalOffset="8dp"
+                                    android:dropDownWidth="match_parent"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E1E2EC"
+                        android:layout_marginVertical="16dp"/>
+
+                    <!-- Distance and Time -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@android:drawable/ic_menu_directions"
+                            app:tint="#003D9B"
+                            android:layout_marginEnd="8dp"/>
+                        <TextView
+                            android:id="@+id/tvDistance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="- km • - mins"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#003D9B"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Contacts -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DELIVERY CONTACTS"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#434654"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginBottom="24dp">
+
+                    <!-- Sender Card -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_white"
+                        android:padding="12dp"
+                        android:elevation="1dp"
+                        android:layout_marginEnd="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sender"
+                            android:textSize="12sp"
+                            android:textColor="#434654"
+                            android:layout_marginBottom="8dp"/>
+                        <EditText
+                            android:id="@+id/etSenderName"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_input_field"
+                            android:paddingHorizontal="8dp"
+                            android:textSize="14sp"
+                            android:hint="Name"
+                            android:layout_marginBottom="8dp"
+                            android:singleLine="true"/>
+                        <EditText
+                            android:id="@+id/etSenderPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_input_field"
+                            android:paddingHorizontal="8dp"
+                            android:textSize="14sp"
+                            android:hint="Phone"
+                            android:inputType="phone"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <!-- Recipient Card -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_white"
+                        android:padding="12dp"
+                        android:elevation="1dp"
+                        android:layout_marginStart="6dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recipient"
+                            android:textSize="12sp"
+                            android:textColor="#434654"
+                            android:layout_marginBottom="8dp"/>
+                        <EditText
+                            android:id="@+id/etReceiverName"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_input_field"
+                            android:paddingHorizontal="8dp"
+                            android:textSize="14sp"
+                            android:hint="Name"
+                            android:layout_marginBottom="8dp"
+                            android:singleLine="true"/>
+                        <EditText
+                            android:id="@+id/etReceiverPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_input_field"
+                            android:paddingHorizontal="8dp"
+                            android:textSize="14sp"
+                            android:hint="Phone"
+                            android:inputType="phone"
+                            android:singleLine="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ProgressBar while calculating -->
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Fixed Bottom Action Area (Inside Bottom Sheet) -->
+        <LinearLayout
+            android:id="@+id/bottomActionArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_bottom_action_bar"
+            android:padding="24dp"
+            android:elevation="24dp"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Confirm Task Creation"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#003D9B"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="12dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

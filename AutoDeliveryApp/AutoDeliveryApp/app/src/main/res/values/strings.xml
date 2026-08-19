@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Auto Delivery</string>
+    <string name="greeting_morning">Good morning,</string>
+    <string name="create_task">Create Task</string>
+    <string name="start">Start</string>
+    <string name="home">Home</string>
+    <string name="activity">Activity</string>
+    <string name="notification">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="login">Log in</string>
+    <string name="register">Register</string>
+    <string name="logout">Log out</string>
+    <string name="confirm_task">Confirm Task Creation</string>
+    <string name="pickup_point">Pickup Point</string>
+    <string name="delivery_point">Delivery Point</string>
+    <string name="service_type">Service Type</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="estimated_cost">ESTIMATED TOTAL COST</string>
+    <string name="sender_name">Sender Name</string>
+    <string name="sender_phone">Sender Phone</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="package_tracking">Package Tracking</string>
+    <string name="active_delivery">ACTIVE DELIVERY</string>
+    <string name="remaining">REMAINING</string>
+    <string name="eta">Estimated Time of Arrival</string>
+    <string name="title_activity_tracking">TrackingActivity</string>
+
+    <!-- ===== Validation Errors ===== -->
+    <string name="error_empty_name">Please enter name</string>
+    <string name="error_empty_email">Please enter email</string>
+    <string name="error_empty_password">Please enter password</string>
+    <string name="error_short_password">Password must be at least 6 characters</string>
+    <string name="error_incomplete_info">Please fill in all info</string>
+
+    <!-- ===== Toast / Success Messages ===== -->
+    <string name="toast_login_success">Log in successful!</string>
+    <string name="toast_register_success">Register successful!</string>
+    <string name="toast_task_created">Task created successfully!</string>
+    <string name="toast_error_prefix">Error: %s</string>
+    <string name="toast_error_save_data">Error saving data: %s</string>
+    <string name="toast_error_register">Error registering: %s</string>
+
+    <!-- ===== Greeting Messages ===== -->
+    <string name="greeting_noon">Good noon,</string>
+    <string name="greeting_afternoon">Good afternoon,</string>
+    <string name="greeting_evening">Good evening,</string>
+
+    <!-- ===== Distance & Price Placeholders ===== -->
+    <string name="placeholder_distance">- km</string>
+    <string name="placeholder_price">---.---</string>
+    <string name="format_distance_km">%s km</string>
+    <string name="format_price_vnd">%s</string>
+    <string name="format_eta_minutes">%d mins</string>
+    <string name="format_mission_id">Mission #%s</string>
+    <string name="format_order_id">Order ID: #%s</string>
+
+    <!-- ===== Order Status Labels ===== -->
+    <string name="status_pending">Pending</string>
+    <string name="status_delivering">Delivering</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_cancelled">Cancelled</string>
+
+    <!-- ===== Service Types ===== -->
+    <string name="service_standard">Standard Delivery (30-60 mins)</string>
+    <string name="service_fast">Fast Delivery (15-30 mins)</string>
+
+    <!-- ===== Profile ===== -->
+    <string name="profile_phone_not_set">Not updated</string>
+
+    <!-- ===== Notification Screen Mock Data ===== -->
+    <string name="notif_icon_ordered"></string>
+    <string name="notif_title_ordered">Order placed</string>
+    <string name="notif_body_ordered">Order #RBT-9042 confirmed, robot preparing</string>
+    <string name="notif_icon_shipping"></string>
+    <string name="notif_title_shipping">Order shipping</string>
+    <string name="notif_body_shipping">Robot is delivering order #RBT-9042</string>
+    <string name="notif_icon_success"></string>
+    <string name="notif_title_success">Order delivered successfully</string>
+    <string name="notif_body_success">Order #RBT-9041 delivered successfully at 09:45</string>
+    <string name="notif_time_success">09:45</string>
+    <string name="notif_icon_cancelled"></string>
+    <string name="notif_title_cancelled">Order cancelled</string>
+    <string name="notif_body_cancelled">Order #RBT-9039 cancelled as requested</string>
+    <string name="notif_icon_new"></string>
+    <string name="notif_title_new">New order</string>
+    <string name="notif_body_new">You have pending order #RBT-9038</string>
+    <string name="notif_time_yesterday">Yesterday</string>
+</resources>

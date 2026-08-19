@@ -1,0 +1,35 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Vùng nón khuếch tán chỉ hướng đi (Cone of view) -->
+    <!-- Bắt đầu từ tâm 60,60 kéo lên trên tạo góc nhìn khoảng 70 độ -->
+    <path android:pathData="M 60,60 L 20,0 Q 60,-10 100,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="60"
+                android:centerY="60"
+                android:gradientRadius="60">
+                <!-- Nửa trong đậm hơn -->
+                <item android:offset="0.2" android:color="#774285F4" />
+                <!-- Nửa ngoài nhạt dần rồi chìm vào nền -->
+                <item android:offset="1.0" android:color="#004285F4" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Viền trắng bên ngoài của chấm xanh -->
+    <path
+        android:pathData="M 60,60 m -16,0 a 16,16 0 1,1 32,0 a 16,16 0 1,1 -32,0"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Chấm xanh lam ở tâm -->
+    <path
+        android:pathData="M 60,60 m -12,0 a 12,12 0 1,1 24,0 a 12,12 0 1,1 -24,0"
+        android:fillColor="#4285F4" />
+
+</vector>

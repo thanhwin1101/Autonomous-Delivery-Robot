@@ -1,0 +1,6 @@
+Feature ID,Feature,Completion %,Status,Build Evidence,Runtime Evidence,Main Blockers,Next Action
+F1,Email or phone login,75%,Build verified,Yes,None,Missing Firebase Rules .indexOn: ["phone" "phoneNormalized"],Deploy rules and test runtime
+F2,Receiver info + robot slots + recipient tracking,85%,Build verified,Yes,None,Missing real backend slot release on task end,QA test the 3-tier lookup and reservation flow
+F3,Remove payment,90%,Build verified,Yes,None,Need to ensure backward compatibility in tracking doesn't crash,Test history rendering with old data
+F4,Notification / push notification,60%,Partially done,Yes,None,Missing Cloud Functions and real FCM push backend,Create Cloud Functions project and deploy plan
+F5,Bottom navigation selected state,90%,Build verified,Yes,None,Need runtime check for stack duplicate prevention,Manual app test

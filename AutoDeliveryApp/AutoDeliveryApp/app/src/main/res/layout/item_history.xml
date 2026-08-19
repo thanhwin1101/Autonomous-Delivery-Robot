@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Order ID + Status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvOrderId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="#RBT-0000"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"/>
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Completed"
+                android:textSize="12sp"
+                android:textColor="@color/status_completed"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:background="@drawable/bg_tag_green"/>
+        </LinearLayout>
+
+        <!-- Addresses -->
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text=" " android:textSize="12sp"/>
+            <TextView android:id="@+id/tvPickup" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:text="Pickup Point"
+                android:textColor="@color/text_secondary" android:textSize="13sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text=" " android:textSize="12sp"/>
+            <TextView android:id="@+id/tvDropoff" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:text="Delivery Point"
+                android:textColor="@color/text_secondary" android:textSize="13sp"/>
+        </LinearLayout>
+
+        <!-- Date -->
+        <TextView android:id="@+id/tvDate"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            tools:text="01/01/2025"
+            android:textColor="@color/text_hint" android:textSize="12sp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

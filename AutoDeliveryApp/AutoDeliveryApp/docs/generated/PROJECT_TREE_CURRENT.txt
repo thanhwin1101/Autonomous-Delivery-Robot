@@ -1,0 +1,164 @@
+AutoDeliveryApp-local/
+# Generated: 2026-07-02 | Source: live filesystem scan
+# Excluded: .gradle/ .idea/ .vscode/ app/build/ build/
+# Source of truth: app/src/ + Gradle configs
+
+├── .gitignore
+├── build.gradle.kts                        [BUILD]
+├── gradle.properties                       [BUILD]
+├── gradlew                                 [BUILD]
+├── gradlew.bat                             [BUILD]
+├── local.properties                        [BUILD - contains secrets, gitignored]
+├── settings.gradle.kts                     [BUILD]
+│
+├── app/
+│   ├── .gitignore
+│   ├── build.gradle.kts                    [BUILD - compileSdk 36, minSdk 24]
+│   ├── google-services.json.template       [BUILD - Firebase config template]
+│   ├── proguard-rules.pro                  [BUILD]
+│   │
+│   └── src/
+│       ├── main/
+│       │   ├── AndroidManifest.xml         [MANIFEST]
+│       │   │
+│       │   ├── java/com/example/autodeliveryapp/
+│       │   │   │
+│       │   │   ├── [ROOT PACKAGE]
+│       │   │   ├── BottomNavActivity.java
+│       │   │   ├── Constants.java
+│       │   │   ├── CreateTaskActivity.java
+│       │   │   ├── EdgeToEdgeHelper.java
+│       │   │   ├── FCMNotificationService.java
+│       │   │   ├── ForgotPasswordActivity.java
+│       │   │   ├── HistoryActivity.java
+│       │   │   ├── LoginActivity.java
+│       │   │   ├── MainActivity.java
+│       │   │   ├── NotificationActivity.java
+│       │   │   ├── ProfileActivity.java
+│       │   │   ├── RegisterActivity.java
+│       │   │   ├── TrackingActivity.java
+│       │   │   │
+│       │   │   ├── adapters/
+│       │   │   │   ├── ActiveTaskAdapter.java
+│       │   │   │   ├── HistoryAdapter.java
+│       │   │   │   └── NotificationAdapter.java
+│       │   │   │
+│       │   │   ├── ble/
+│       │   │   │   ├── BleActionCallback.java
+│       │   │   │   ├── BleConstants.java
+│       │   │   │   ├── BleGattClient.java
+│       │   │   │   ├── BleManager.java
+│       │   │   │   ├── BlePermissionHelper.java
+│       │   │   │   ├── BleProtocol.java
+│       │   │   │   └── BleTokenUtils.java
+│       │   │   │
+│       │   │   ├── data/
+│       │   │   │   ├── HistoryItem.java
+│       │   │   │   └── NotificationItem.java
+│       │   │   │
+│       │   │   ├── model/
+│       │   │   │   ├── RobotAck.java
+│       │   │   │   ├── RobotCommand.java
+│       │   │   │   ├── RobotStatusMessage.java
+│       │   │   │   └── RobotTelemetry.java
+│       │   │   │
+│       │   │   ├── mqtt/
+│       │   │   │   ├── MqttConfig.java
+│       │   │   │   ├── MqttFirebaseBridge.java
+│       │   │   │   ├── MqttListener.java
+│       │   │   │   ├── MqttManager.java
+│       │   │   │   ├── MqttPayloadParser.java
+│       │   │   │   └── MqttTopics.java
+│       │   │   │
+│       │   │   └── utils/
+│       │   │       ├── NotificationUtils.java
+│       │   │       ├── PhoneUtils.java
+│       │   │       ├── SlotUtils.java
+│       │   │       └── TaskStatus.java
+│       │   │
+│       │   └── res/
+│       │       ├── drawable/
+│       │       │   ├── bg_bottom_sheet_rounded.xml
+│       │       │   ├── bg_button_green.xml
+│       │       │   ├── bg_card_outlined.xml
+│       │       │   ├── bg_tag_blue.xml
+│       │       │   ├── bg_tag_green.xml
+│       │       │   ├── bg_tag_orange.xml
+│       │       │   ├── bg_tag_red.xml
+│       │       │   ├── ic_back.xml
+│       │       │   ├── ic_nav_history.xml
+│       │       │   ├── ic_nav_home.xml
+│       │       │   ├── ic_nav_notification.xml
+│       │       │   ├── ic_nav_profile.xml
+│       │       │   ├── ic_step_completed.xml
+│       │       │   ├── ic_step_delivering.xml
+│       │       │   ├── ic_step_preparing.xml
+│       │       │   └── ic_step_received.xml
+│       │       │
+│       │       ├── layout/
+│       │       │   ├── activity_create_task.xml
+│       │       │   ├── activity_forgot_password.xml
+│       │       │   ├── activity_history.xml
+│       │       │   ├── activity_login.xml
+│       │       │   ├── activity_main.xml
+│       │       │   ├── activity_notification.xml
+│       │       │   ├── activity_profile.xml
+│       │       │   ├── activity_register.xml
+│       │       │   ├── activity_tracking.xml
+│       │       │   ├── item_active_task.xml
+│       │       │   ├── item_history.xml
+│       │       │   └── item_notification.xml
+│       │       │
+│       │       ├── menu/
+│       │       │   └── bottom_nav_menu.xml
+│       │       │
+│       │       ├── mipmap-hdpi/
+│       │       │   ├── ic_launcher.webp
+│       │       │   └── ic_launcher_round.webp
+│       │       │
+│       │       ├── values/
+│       │       │   ├── colors.xml
+│       │       │   ├── strings.xml
+│       │       │   └── themes.xml
+│       │       │
+│       │       ├── values-night/
+│       │       │   └── themes.xml
+│       │       │
+│       │       └── xml/
+│       │           ├── backup_rules.xml
+│       │           └── data_extraction_rules.xml
+│       │
+│       └── test/
+│           └── java/com/example/autodeliveryapp/
+│               └── ExampleUnitTest.java
+│
+├── docs/
+│   ├── archive/                            [ARCHIVE - old reports/logs, not source of truth]
+│   │   ├── audits/      (7 files)
+│   │   ├── context/     (6 files)
+│   │   ├── logs/        (67 files)
+│   │   ├── plans/       (2 files)
+│   │   ├── raw/         (2 files)
+│   │   └── reports/     (14 files)
+│   ├── cleanup/
+│   │   ├── CLEANUP_MOVE_REPORT.md
+│   │   └── PRE_CLEANUP_FILE_INVENTORY.md
+│   ├── current/                            [NEW - fresh context docs, source of truth]
+│   └── generated/                         [NEW - live inventory/tree]
+│
+├── gradle/
+│   ├── gradle-daemon-jvm.properties
+│   ├── libs.versions.toml
+│   └── wrapper/
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+│
+└── logs/                                   [EMPTY - all old logs moved to docs/archive/logs/]
+
+SUMMARY:
+  Java source files: 41
+  XML layout files:  12
+  Drawable XML:      16
+  Values files:       3 (+ 1 night)
+  Menu files:         1
+  Total res XML:     37

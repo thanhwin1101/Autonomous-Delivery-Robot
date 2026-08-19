@@ -1,0 +1,82 @@
+path,extension,type,purpose_guess,is_source,should_keep
+app/src/main/AndroidManifest.xml,xml,manifest,App manifest - declares activities services permissions,true,true
+app/src/main/java/com/example/autodeliveryapp/BottomNavActivity.java,java,activity,Bottom navigation host - manages tab switching between Main/History/Notification/Profile,true,true
+app/src/main/java/com/example/autodeliveryapp/Constants.java,java,constants,App-wide constants: DB_URL MapTiler MQTT FCM prefs Da Nang locations map,true,true
+app/src/main/java/com/example/autodeliveryapp/CreateTaskActivity.java,java,activity,Create delivery task - input sender/receiver/addresses/slot - preview A→B route - write to Firebase,true,true
+app/src/main/java/com/example/autodeliveryapp/EdgeToEdgeHelper.java,java,util,Edge-to-edge UI helper - applies status bar and nav bar padding/color,true,true
+app/src/main/java/com/example/autodeliveryapp/FCMNotificationService.java,java,service,Firebase Cloud Messaging service - receives push tokens and messages,true,true
+app/src/main/java/com/example/autodeliveryapp/ForgotPasswordActivity.java,java,activity,Forgot password via Firebase Auth email reset,true,true
+app/src/main/java/com/example/autodeliveryapp/HistoryActivity.java,java,activity,Task history list for current user - reads from Firebase tasks node,true,true
+app/src/main/java/com/example/autodeliveryapp/LoginActivity.java,java,activity,Login screen - email+password or phone OTP via Firebase Auth,true,true
+app/src/main/java/com/example/autodeliveryapp/MainActivity.java,java,activity,Home/main screen - shows active tasks for current user,true,true
+app/src/main/java/com/example/autodeliveryapp/NotificationActivity.java,java,activity,Notification inbox - reads from Firebase /notifications/{uid},true,true
+app/src/main/java/com/example/autodeliveryapp/ProfileActivity.java,java,activity,User profile screen - show name/phone/email - logout button,true,true
+app/src/main/java/com/example/autodeliveryapp/RegisterActivity.java,java,activity,Register new user - email+password+phone - writes to Firebase Auth and /users/{uid},true,true
+app/src/main/java/com/example/autodeliveryapp/TrackingActivity.java,java,activity,Live tracking screen - Firebase listener + MQTT telemetry/status/ack + BLE action + MapLibre route C→A→B,true,true
+app/src/main/java/com/example/autodeliveryapp/adapters/ActiveTaskAdapter.java,java,adapter,RecyclerView adapter for active tasks list in MainActivity,true,true
+app/src/main/java/com/example/autodeliveryapp/adapters/HistoryAdapter.java,java,adapter,RecyclerView adapter for task history list in HistoryActivity,true,true
+app/src/main/java/com/example/autodeliveryapp/adapters/NotificationAdapter.java,java,adapter,RecyclerView adapter for notifications list in NotificationActivity,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BleActionCallback.java,java,interface,BLE callback interface - onSuccess / onFailure,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BleConstants.java,java,constants,BLE constants: SERVICE_UUID CHARACTERISTIC_UUID ACTION_CONFIRM_LOADED ACTION_OPEN_SLOT BLE states,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BleGattClient.java,java,ble,Low-level GATT client - connects discovers characteristic writes reads BLE response,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BleManager.java,java,ble,High-level BLE manager - scans for robot by robotId calls BleGattClient executeBleAction,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BlePermissionHelper.java,java,util,BLE permission helper - checks BLUETOOTH_SCAN BLUETOOTH_CONNECT ACCESS_FINE_LOCATION,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BleProtocol.java,java,ble,BLE JSON protocol builder/parser - buildRequest and Response.parse,true,true
+app/src/main/java/com/example/autodeliveryapp/ble/BleTokenUtils.java,java,util,Generates 128-bit cryptographically secure hex token (32 chars) for BLE auth,true,true
+app/src/main/java/com/example/autodeliveryapp/data/HistoryItem.java,java,model,Data model for history list item,true,true
+app/src/main/java/com/example/autodeliveryapp/data/NotificationItem.java,java,model,Data model for notification list item,true,true
+app/src/main/java/com/example/autodeliveryapp/model/RobotAck.java,java,model,MQTT ack payload model: commandId taskId robotId accepted message timestamp,true,true
+app/src/main/java/com/example/autodeliveryapp/model/RobotCommand.java,java,model,MQTT command payload model: command taskId orderId robotId slotId pickupLat/Lng dropoffLat/Lng bleToken timestamp,true,true
+app/src/main/java/com/example/autodeliveryapp/model/RobotStatusMessage.java,java,model,MQTT status payload model: robotId taskId status slotId message timestamp,true,true
+app/src/main/java/com/example/autodeliveryapp/model/RobotTelemetry.java,java,model,MQTT telemetry payload model: robotId taskId lat lng battery speed heading obstacle timestamp seq,true,true
+app/src/main/java/com/example/autodeliveryapp/mqtt/MqttConfig.java,java,config,MQTT config from BuildConfig: HOST PORT USERNAME PASSWORD USE_SSL ENV DEFAULT_ROBOT_ID,true,true
+app/src/main/java/com/example/autodeliveryapp/mqtt/MqttFirebaseBridge.java,java,service,MQTT→Firebase bridge: mirrors telemetry/status/ack to Firebase - sends notifications - handles slot release,true,true
+app/src/main/java/com/example/autodeliveryapp/mqtt/MqttListener.java,java,interface,MQTT listener interface: onMqttConnected onMqttDisconnected onRobotTelemetry onRobotStatus onRobotAck onRobotAvailability,true,true
+app/src/main/java/com/example/autodeliveryapp/mqtt/MqttManager.java,java,service,Singleton MQTT client manager: connect/disconnect/subscribe/publish using HiveMQ SDK,true,true
+app/src/main/java/com/example/autodeliveryapp/mqtt/MqttPayloadParser.java,java,util,Parses MQTT JSON payloads into model objects (telemetry/status/ack) and serializes commands,true,true
+app/src/main/java/com/example/autodeliveryapp/mqtt/MqttTopics.java,java,config,MQTT topic builders: command/telemetry/status/ack/event/availability with env prefix,true,true
+app/src/main/java/com/example/autodeliveryapp/utils/NotificationUtils.java,java,util,Notification helper: buildTitle buildMessage getIcon for each task status,true,true
+app/src/main/java/com/example/autodeliveryapp/utils/PhoneUtils.java,java,util,Phone number normalizer (E.164 for Vietnam +84),true,true
+app/src/main/java/com/example/autodeliveryapp/utils/SlotUtils.java,java,util,Firebase slot release logic: releaseSlot and releaseSlotIfTerminal,true,true
+app/src/main/java/com/example/autodeliveryapp/utils/TaskStatus.java,java,constants,Task status string constants and isTerminal() helper,true,true
+app/src/main/res/layout/activity_create_task.xml,xml,layout,Layout for CreateTaskActivity: map view + bottom sheet + sender/receiver form + slot selection,true,true
+app/src/main/res/layout/activity_forgot_password.xml,xml,layout,Layout for ForgotPasswordActivity,true,true
+app/src/main/res/layout/activity_history.xml,xml,layout,Layout for HistoryActivity: RecyclerView list,true,true
+app/src/main/res/layout/activity_login.xml,xml,layout,Layout for LoginActivity: email/phone tabs + password + buttons,true,true
+app/src/main/res/layout/activity_main.xml,xml,layout,Layout for MainActivity: active task RecyclerView + create task button,true,true
+app/src/main/res/layout/activity_notification.xml,xml,layout,Layout for NotificationActivity: RecyclerView list,true,true
+app/src/main/res/layout/activity_profile.xml,xml,layout,Layout for ProfileActivity: user info display + logout,true,true
+app/src/main/res/layout/activity_register.xml,xml,layout,Layout for RegisterActivity: name/email/phone/password fields,true,true
+app/src/main/res/layout/activity_tracking.xml,xml,layout,Layout for TrackingActivity: MapLibre map + bottom sheet + status timeline + BLE button + MQTT status,true,true
+app/src/main/res/layout/item_active_task.xml,xml,layout,RecyclerView item layout for active task card in MainActivity,true,true
+app/src/main/res/layout/item_history.xml,xml,layout,RecyclerView item layout for history item in HistoryActivity,true,true
+app/src/main/res/layout/item_notification.xml,xml,layout,RecyclerView item layout for notification item in NotificationActivity,true,true
+app/src/main/res/drawable/bg_bottom_sheet_rounded.xml,xml,drawable,Background shape for bottom sheet with rounded top corners,true,true
+app/src/main/res/drawable/bg_button_green.xml,xml,drawable,Green rounded button background,true,true
+app/src/main/res/drawable/bg_card_outlined.xml,xml,drawable,Outlined card background,true,true
+app/src/main/res/drawable/bg_tag_blue.xml,xml,drawable,Blue tag/chip background,true,true
+app/src/main/res/drawable/bg_tag_green.xml,xml,drawable,Green tag/chip background,true,true
+app/src/main/res/drawable/bg_tag_orange.xml,xml,drawable,Orange tag/chip background,true,true
+app/src/main/res/drawable/bg_tag_red.xml,xml,drawable,Red tag/chip background,true,true
+app/src/main/res/drawable/ic_back.xml,xml,drawable,Back arrow icon,true,true
+app/src/main/res/drawable/ic_nav_history.xml,xml,drawable,Bottom nav history icon,true,true
+app/src/main/res/drawable/ic_nav_home.xml,xml,drawable,Bottom nav home icon,true,true
+app/src/main/res/drawable/ic_nav_notification.xml,xml,drawable,Bottom nav notification icon,true,true
+app/src/main/res/drawable/ic_nav_profile.xml,xml,drawable,Bottom nav profile icon,true,true
+app/src/main/res/drawable/ic_step_completed.xml,xml,drawable,Tracking timeline step - completed state icon,true,true
+app/src/main/res/drawable/ic_step_delivering.xml,xml,drawable,Tracking timeline step - delivering state icon,true,true
+app/src/main/res/drawable/ic_step_preparing.xml,xml,drawable,Tracking timeline step - preparing/pickup state icon,true,true
+app/src/main/res/drawable/ic_step_received.xml,xml,drawable,Tracking timeline step - received state icon,true,true
+app/src/main/res/menu/bottom_nav_menu.xml,xml,menu,Bottom navigation menu items: home/history/notification/profile,true,true
+app/src/main/res/values/colors.xml,xml,values,App color definitions (primary_green text_hint etc.),true,true
+app/src/main/res/values/strings.xml,xml,values,App string resources,true,true
+app/src/main/res/values/themes.xml,xml,values,App themes,true,true
+app/src/main/res/values-night/themes.xml,xml,values,Dark mode theme overrides,true,true
+app/build.gradle.kts,kts,build,App-level Gradle build: compileSdk 36 minSdk 24 dependencies Firebase MapLibre HiveMQ MQTT,false,true
+settings.gradle.kts,kts,build,Gradle settings: project name and included modules,false,true
+build.gradle.kts,kts,build,Root Gradle build file,false,true
+gradle.properties,properties,config,Gradle build properties,false,true
+local.properties,properties,config,Local secrets: SDK path DB_URL MAPTILER_API_KEY MQTT_* Firebase_API_Key (gitignored),false,true
+app/google-services.json.template,json,config,Firebase config template (DB_URL + API key injected at build time from local.properties),false,true
+app/proguard-rules.pro,pro,config,ProGuard obfuscation rules for release builds,false,true
+.gitignore,gitignore,config,Root git ignore rules,false,true

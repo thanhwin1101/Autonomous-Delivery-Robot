@@ -1,0 +1,118 @@
+﻿Folder PATH listing for volume New Volume
+Volume serial number is 00000186 0801:807E
+E:\FINAL-YEAR-PROJECT\AUTODELIVERYAPP-LOCAL\APP\SRC
++---androidTest
+|   \---java
+|       \---com
+|           \---example
+|               \---autodeliveryapp
+|                       ExampleInstrumentedTest.java
+|                       
++---main
+|   |   AndroidManifest.xml
+|   |   
+|   +---java
+|   |   \---com
+|   |       \---example
+|   |           \---autodeliveryapp
+|   |               |   BottomNavActivity.java
+|   |               |   Constants.java
+|   |               |   CreateTaskActivity.java
+|   |               |   EdgeToEdgeHelper.java
+|   |               |   FCMNotificationService.java
+|   |               |   ForgotPasswordActivity.java
+|   |               |   HistoryActivity.java
+|   |               |   LoginActivity.java
+|   |               |   MainActivity.java
+|   |               |   NotificationActivity.java
+|   |               |   ProfileActivity.java
+|   |               |   RegisterActivity.java
+|   |               |   TrackingActivity.java
+|   |               |   
+|   |               +---adapters
+|   |               |       ActiveTaskAdapter.java
+|   |               |       HistoryAdapter.java
+|   |               |       NotificationAdapter.java
+|   |               |       
+|   |               +---data
+|   |               |       HistoryItem.java
+|   |               |       NotificationItem.java
+|   |               |       
+|   |               +---model
+|   |               |       RobotAck.java
+|   |               |       RobotCommand.java
+|   |               |       RobotStatusMessage.java
+|   |               |       RobotTelemetry.java
+|   |               |       
+|   |               +---mqtt
+|   |               |       MqttConfig.java
+|   |               |       MqttFirebaseBridge.java
+|   |               |       MqttListener.java
+|   |               |       MqttManager.java
+|   |               |       MqttPayloadParser.java
+|   |               |       MqttTopics.java
+|   |               |       
+|   |               \---utils
+|   |                       NotificationUtils.java
+|   |                       PhoneUtils.java
+|   |                       SlotUtils.java
+|   |                       TaskStatus.java
+|   |                       
+|   \---res
+|       +---color
+|       |       bottom_nav_color.xml
+|       |       
+|       +---drawable
+|       |       bg_bottom_sheet_rounded.xml
+|       |       bg_button_green.xml
+|       |       bg_card_outlined.xml
+|       |       bg_tag_blue.xml
+|       |       bg_tag_green.xml
+|       |       bg_tag_orange.xml
+|       |       bg_tag_red.xml
+|       |       ic_back.xml
+|       |       ic_nav_history.xml
+|       |       ic_nav_home.xml
+|       |       ic_nav_notification.xml
+|       |       ic_nav_profile.xml
+|       |       
+|       +---layout
+|       |       activity_create_task.xml
+|       |       activity_forgot_password.xml
+|       |       activity_history.xml
+|       |       activity_login.xml
+|       |       activity_main.xml
+|       |       activity_notification.xml
+|       |       activity_profile.xml
+|       |       activity_register.xml
+|       |       activity_tracking.xml
+|       |       item_active_task.xml
+|       |       item_history.xml
+|       |       item_notification.xml
+|       |       
+|       +---menu
+|       |       bottom_nav_menu.xml
+|       |       
+|       +---mipmap-hdpi
+|       |       ic_launcher.webp
+|       |       ic_launcher_round.webp
+|       |       
+|       +---values
+|       |       colors.xml
+|       |       strings.xml
+|       |       themes.xml
+|       |       
+|       +---values-night
+|       |       themes.xml
+|       |       
+|       \---xml
+|               backup_rules.xml
+|               data_extraction_rules.xml
+|               
+\---test
+    \---java
+        \---com
+            \---example
+                \---autodeliveryapp
+                        ExampleUnitTest.java
+                        

@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    
+    <!-- Left Wheel -->
+    <path
+        android:fillColor="#374151"
+        android:pathData="M 6,12 h 4 v 24 h -4 z" />
+        
+    <!-- Right Wheel -->
+    <path
+        android:fillColor="#374151"
+        android:pathData="M 38,12 h 4 v 24 h -4 z" />
+
+    <!-- Main Body -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M 10,8 h 28 c 2.2,0 4,1.8 4,4 v 24 c 0,2.2 -1.8,4 -4,4 h -28 c -2.2,0 -4,-1.8 -4,-4 v -24 c 0,-2.2 1.8,-4 4,-4 z" />
+        
+    <!-- Front Windshield / Sensor Array -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M 14,8 h 20 v 6 c 0,1.1 -0.9,2 -2,2 h -16 c -1.1,0 -2,-0.9 -2,-2 v -6 z" />
+
+    <!-- Front glowing light -->
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M 18,10 h 12 v 2 h -12 z" />
+
+    <!-- Details on back -->
+    <path
+        android:fillColor="#D1D5DB"
+        android:pathData="M 16,36 h 16 v 4 h -16 z" />
+
+</vector>

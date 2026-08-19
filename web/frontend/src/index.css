@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #020617; /* Slate-955 / Slate-950 */
+  color: #e2e8f0; /* Slate 200 */
+  overflow: hidden;
+}
+
+/* High Density Panels (Replaces glassmorphism with high-density clean solid borders) */
+.glass-panel {
+  background-color: #0f172a; /* slate-900 */
+  border: 1px solid #1e293b; /* slate-800 */
+}
+
+.glass-panel-elevated {
+  background-color: #1e293b; /* slate-800 */
+  border: 1px solid #334155; /* slate-700 */
+}
+
+/* Glowing Pulse effect */
+.pulse-glow {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+/* Custom flow line animation for route steps */
+.route-step-active::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, #7dd3fc, transparent);
+  transform: translateX(-50%);
+  animation: flow 1.5s infinite;
+}
+
+@keyframes flow {
+  0% {
+    opacity: 0.2;
+    height: 0px;
+  }
+  50% {
+    opacity: 1;
+    height: 24px;
+  }
+  100% {
+    opacity: 0.2;
+    height: 24px;
+  }
+}
+
+/* Circular Progress Style using conic-gradient */
+.circular-progress {
+  mask: radial-gradient(transparent 58%, #000 60%);
+  -webkit-mask: radial-gradient(transparent 58%, #000 60%);
+}
+
+.leaflet-bar {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.leaflet-control-zoom {
+  display: none !important; /* We use our custom UI controls */
+}
+
+/* Custom Robot Marker Labels */
+.robot-marker-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9), 0 1px 2px rgba(0, 0, 0, 0.9);
+  margin-top: -26px !important;
+}
+
+.robot-marker-label-inactive {
+  color: #a0b4c4 !important;
+}
+

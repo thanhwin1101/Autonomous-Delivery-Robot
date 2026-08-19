@@ -1,0 +1,1865 @@
+﻿Folder PATH listing for volume New Volume
+Volume serial number is 000000B4 0801:807E
+E:.
+|   .gitignore
+|   build.gradle.kts
+|   gradle.properties
+|   gradlew
+|   gradlew.bat
+|   local.properties
+|   PROJECT_FILES_FULL.csv
+|   PROJECT_FILES_SOURCE_ONLY.csv
+|   PROJECT_TREE.txt
+|   PROJECT_TREE_FULL.txt
+|   PROJECT_TREE_SOURCE_ONLY.txt
+|   README.md
+|   settings.gradle.kts
+|   
++---.gradle
+|   +---9.4.1
+|   |   |   gc.properties
+|   |   |   
+|   |   +---checksums
+|   |   |       checksums.lock
+|   |   |       md5-checksums.bin
+|   |   |       sha1-checksums.bin
+|   |   |       
+|   |   +---executionHistory
+|   |   |       executionHistory.bin
+|   |   |       executionHistory.lock
+|   |   |       
+|   |   +---expanded
+|   |   +---fileChanges
+|   |   |       last-build.bin
+|   |   |       
+|   |   +---fileHashes
+|   |   |       fileHashes.bin
+|   |   |       fileHashes.lock
+|   |   |       resourceHashesCache.bin
+|   |   |       
+|   |   \---vcsMetadata
+|   +---buildOutputCleanup
+|   |       buildOutputCleanup.lock
+|   |       cache.properties
+|   |       outputFiles.bin
+|   |       
+|   \---vcs-1
+|           gc.properties
+|           
++---.idea
+|   |   .gitignore
+|   |   .name
+|   |   AndroidProjectSystem.xml
+|   |   appInsightsSettings.xml
+|   |   AutoDeliveryApp-local.iml
+|   |   compiler.xml
+|   |   deploymentTargetSelector.xml
+|   |   deviceManager.xml
+|   |   gradle.xml
+|   |   misc.xml
+|   |   runConfigurations.xml
+|   |   workspace.xml
+|   |   
+|   \---caches
+|           deviceStreaming.xml
+|           
++---.vscode
+|       settings.json
+|       
++---app
+|   |   .gitignore
+|   |   build.gradle.kts
+|   |   google-services.json
+|   |   google-services.json.example
+|   |   proguard-rules.pro
+|   |   
+|   +---build
+|   |   +---generated
+|   |   |   +---ap_generated_sources
+|   |   |   |   \---debug
+|   |   |   |       \---out
+|   |   |   +---data_binding_base_class_source_out
+|   |   |   |   \---debug
+|   |   |   |       \---out
+|   |   |   |           \---com
+|   |   |   |               \---example
+|   |   |   |                   \---autodeliveryapp
+|   |   |   |                       \---databinding
+|   |   |   |                               ActivityCreateTaskBinding.java
+|   |   |   |                               ActivityForgotPasswordBinding.java
+|   |   |   |                               ActivityHistoryBinding.java
+|   |   |   |                               ActivityLoginBinding.java
+|   |   |   |                               ActivityMainBinding.java
+|   |   |   |                               ActivityNotificationBinding.java
+|   |   |   |                               ActivityProfileBinding.java
+|   |   |   |                               ActivityRegisterBinding.java
+|   |   |   |                               ActivityTrackingBinding.java
+|   |   |   |                               ItemActiveTaskBinding.java
+|   |   |   |                               ItemHistoryBinding.java
+|   |   |   |                               ItemNotificationBinding.java
+|   |   |   |                               
+|   |   |   +---res
+|   |   |   |   +---pngs
+|   |   |   |   |   \---debug
+|   |   |   |   \---processDebugGoogleServices
+|   |   |   |       \---values
+|   |   |   |               values.xml
+|   |   |   |               
+|   |   |   +---source
+|   |   |   |   \---buildConfig
+|   |   |   |       \---debug
+|   |   |   |           \---com
+|   |   |   |               \---example
+|   |   |   |                   \---autodeliveryapp
+|   |   |   |                           BuildConfig.java
+|   |   |   |                           
+|   |   |   \---updated_navigation_xml
+|   |   |       \---debug
+|   |   +---gmpAppId
+|   |   |       debug.txt
+|   |   |       
+|   |   +---intermediates
+|   |   |   +---aar_metadata_check
+|   |   |   |   \---debug
+|   |   |   |       \---checkDebugAarMetadata
+|   |   |   +---android_res_source_set_path_map
+|   |   |   |   \---debug
+|   |   |   |       \---mapDebugSourceSetPaths
+|   |   |   |               file-map.txt
+|   |   |   |               
+|   |   |   +---annotation_processor_list
+|   |   |   |   \---debug
+|   |   |   |       \---javaPreCompileDebug
+|   |   |   |               annotationProcessors.json
+|   |   |   |               
+|   |   |   +---apk_ide_redirect_file
+|   |   |   |   \---debug
+|   |   |   |       \---createDebugApkListingFileRedirect
+|   |   |   |               redirect.txt
+|   |   |   |               
+|   |   |   +---app_metadata
+|   |   |   |   \---debug
+|   |   |   |       \---writeDebugAppMetadata
+|   |   |   |               app-metadata.properties
+|   |   |   |               
+|   |   |   +---assets
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugAssets
+|   |   |   +---compatible_screen_manifest
+|   |   |   |   \---debug
+|   |   |   |       \---createDebugCompatibleScreenManifests
+|   |   |   |               output-metadata.json
+|   |   |   |               
+|   |   |   +---compiled_navigation_res
+|   |   |   |   \---debug
+|   |   |   |       \---compileDebugNavigationResources
+|   |   |   +---compile_and_runtime_r_class_jar
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugResources
+|   |   |   |               R.jar
+|   |   |   |               
+|   |   |   +---compile_r_class_jar
+|   |   |   |   \---debug
+|   |   |   |       \---generateDebugRFile
+|   |   |   |               R.jar
+|   |   |   |               
+|   |   |   +---compile_symbol_list
+|   |   |   |   \---debug
+|   |   |   |       \---generateDebugRFile
+|   |   |   |               R.txt
+|   |   |   |               
+|   |   |   +---compressed_assets
+|   |   |   |   \---debug
+|   |   |   |       \---compressDebugAssets
+|   |   |   |           \---out
+|   |   |   +---data_binding_base_class_log_artifact
+|   |   |   |   \---debug
+|   |   |   |       \---dataBindingGenBaseClassesDebug
+|   |   |   |           \---out
+|   |   |   |                   com.example.autodeliveryapp-binding_classes.json
+|   |   |   |                   
+|   |   |   +---data_binding_dependency_artifacts
+|   |   |   |   \---debug
+|   |   |   |       \---dataBindingMergeDependencyArtifactsDebug
+|   |   |   +---data_binding_layout_info_type_merge
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugResources
+|   |   |   |           \---out
+|   |   |   |                   activity_create_task-layout.xml
+|   |   |   |                   activity_forgot_password-layout.xml
+|   |   |   |                   activity_history-layout.xml
+|   |   |   |                   activity_login-layout.xml
+|   |   |   |                   activity_main-layout.xml
+|   |   |   |                   activity_notification-layout.xml
+|   |   |   |                   activity_profile-layout.xml
+|   |   |   |                   activity_register-layout.xml
+|   |   |   |                   activity_tracking-layout.xml
+|   |   |   |                   item_active_task-layout.xml
+|   |   |   |                   item_history-layout.xml
+|   |   |   |                   item_notification-layout.xml
+|   |   |   |                   
+|   |   |   +---data_binding_layout_info_type_package
+|   |   |   |   \---debug
+|   |   |   |       \---packageDebugResources
+|   |   |   |           \---out
+|   |   |   |                   activity_create_task-layout.xml
+|   |   |   |                   activity_forgot_password-layout.xml
+|   |   |   |                   activity_history-layout.xml
+|   |   |   |                   activity_login-layout.xml
+|   |   |   |                   activity_main-layout.xml
+|   |   |   |                   activity_notification-layout.xml
+|   |   |   |                   activity_profile-layout.xml
+|   |   |   |                   activity_register-layout.xml
+|   |   |   |                   activity_tracking-layout.xml
+|   |   |   |                   item_active_task-layout.xml
+|   |   |   |                   item_history-layout.xml
+|   |   |   |                   item_notification-layout.xml
+|   |   |   |                   
+|   |   |   +---desugar_graph
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   |               +---currentProject
+|   |   |   |               |   +---dirs_bucket_0
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_1
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_2
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_3
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_4
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_5
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_6
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_7
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_0
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_1
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_2
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_3
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_4
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_5
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_6
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   \---jar_79af2a064abec147ef46d5a7b7f4f31614b9e7fa651dc5c267f90211c28d5a1a_bucket_7
+|   |   |   |               |           graph.bin
+|   |   |   |               |           
+|   |   |   |               +---externalLibs
+|   |   |   |               |   +---dirs_bucket_0
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_1
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_2
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_3
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_4
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_5
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_6
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   \---dirs_bucket_7
+|   |   |   |               |           graph.bin
+|   |   |   |               |           
+|   |   |   |               +---mixedScopes
+|   |   |   |               |   +---dirs_bucket_0
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_1
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_2
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_3
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_4
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_5
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   +---dirs_bucket_6
+|   |   |   |               |   |       graph.bin
+|   |   |   |               |   |       
+|   |   |   |               |   \---dirs_bucket_7
+|   |   |   |               |           graph.bin
+|   |   |   |               |           
+|   |   |   |               \---otherProjects
+|   |   |   |                   +---dirs_bucket_0
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   +---dirs_bucket_1
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   +---dirs_bucket_2
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   +---dirs_bucket_3
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   +---dirs_bucket_4
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   +---dirs_bucket_5
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   +---dirs_bucket_6
+|   |   |   |                   |       graph.bin
+|   |   |   |                   |       
+|   |   |   |                   \---dirs_bucket_7
+|   |   |   |                           graph.bin
+|   |   |   |                           
+|   |   |   +---dex
+|   |   |   |   \---debug
+|   |   |   |       +---mergeExtDexDebug
+|   |   |   |       |       classes.dex
+|   |   |   |       |       classes2.dex
+|   |   |   |       |       classes3.dex
+|   |   |   |       |       
+|   |   |   |       +---mergeLibDexDebug
+|   |   |   |       |   +---0
+|   |   |   |       |   +---1
+|   |   |   |       |   +---10
+|   |   |   |       |   +---11
+|   |   |   |       |   +---12
+|   |   |   |       |   +---13
+|   |   |   |       |   +---14
+|   |   |   |       |   +---15
+|   |   |   |       |   +---2
+|   |   |   |       |   +---3
+|   |   |   |       |   +---4
+|   |   |   |       |   +---5
+|   |   |   |       |   +---6
+|   |   |   |       |   +---7
+|   |   |   |       |   +---8
+|   |   |   |       |   \---9
+|   |   |   |       \---mergeProjectDexDebug
+|   |   |   |           +---0
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---1
+|   |   |   |           +---10
+|   |   |   |           +---11
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---12
+|   |   |   |           +---13
+|   |   |   |           +---14
+|   |   |   |           +---15
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---2
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---3
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---4
+|   |   |   |           +---5
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---6
+|   |   |   |           +---7
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           +---8
+|   |   |   |           |       classes.dex
+|   |   |   |           |       
+|   |   |   |           \---9
+|   |   |   +---dex_archive_input_jar_hashes
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |               out
+|   |   |   |               
+|   |   |   +---dex_number_of_buckets_file
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |               out
+|   |   |   |               
+|   |   |   +---duplicate_classes_check
+|   |   |   |   \---debug
+|   |   |   |       \---checkDebugDuplicateClasses
+|   |   |   +---external_file_lib_dex_archives
+|   |   |   |   \---debug
+|   |   |   |       \---desugarDebugFileDependencies
+|   |   |   +---external_libs_dex_archive
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---external_libs_dex_archive_with_artifact_transforms
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---global_synthetics_dex
+|   |   |   |   \---debug
+|   |   |   |       \---generateDebugGlobalSynthetics
+|   |   |   |               classes.dex
+|   |   |   |               
+|   |   |   +---global_synthetics_external_lib
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---global_synthetics_external_libs_artifact_transform
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---global_synthetics_file_lib
+|   |   |   |   \---debug
+|   |   |   |       \---desugarDebugFileDependencies
+|   |   |   +---global_synthetics_mixed_scope
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---global_synthetics_project
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---global_synthetics_subproject
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---incremental
+|   |   |   |   +---dataBindingGenBaseClassesDebug
+|   |   |   |   |       base_builder_log.json
+|   |   |   |   |       
+|   |   |   |   +---debug
+|   |   |   |   |   +---mergeDebugResources
+|   |   |   |   |   |   |   compile-file-map.properties
+|   |   |   |   |   |   |   merger.xml
+|   |   |   |   |   |   |   
+|   |   |   |   |   |   +---merged.dir
+|   |   |   |   |   |   |   +---values
+|   |   |   |   |   |   |   |       values.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-af
+|   |   |   |   |   |   |   |       values-af.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-am
+|   |   |   |   |   |   |   |       values-am.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ar
+|   |   |   |   |   |   |   |       values-ar.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-as
+|   |   |   |   |   |   |   |       values-as.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-az
+|   |   |   |   |   |   |   |       values-az.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-b+es+419
+|   |   |   |   |   |   |   |       values-b+es+419.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-b+sr+Latn
+|   |   |   |   |   |   |   |       values-b+sr+Latn.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-be
+|   |   |   |   |   |   |   |       values-be.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-bg
+|   |   |   |   |   |   |   |       values-bg.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-bn
+|   |   |   |   |   |   |   |       values-bn.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-bs
+|   |   |   |   |   |   |   |       values-bs.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ca
+|   |   |   |   |   |   |   |       values-ca.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-cs
+|   |   |   |   |   |   |   |       values-cs.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-da
+|   |   |   |   |   |   |   |       values-da.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-de
+|   |   |   |   |   |   |   |       values-de.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-el
+|   |   |   |   |   |   |   |       values-el.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-en-rAU
+|   |   |   |   |   |   |   |       values-en-rAU.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-en-rCA
+|   |   |   |   |   |   |   |       values-en-rCA.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-en-rGB
+|   |   |   |   |   |   |   |       values-en-rGB.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-en-rIN
+|   |   |   |   |   |   |   |       values-en-rIN.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-en-rXC
+|   |   |   |   |   |   |   |       values-en-rXC.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-es
+|   |   |   |   |   |   |   |       values-es.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-es-rUS
+|   |   |   |   |   |   |   |       values-es-rUS.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-et
+|   |   |   |   |   |   |   |       values-et.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-eu
+|   |   |   |   |   |   |   |       values-eu.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-fa
+|   |   |   |   |   |   |   |       values-fa.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-fi
+|   |   |   |   |   |   |   |       values-fi.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-fr
+|   |   |   |   |   |   |   |       values-fr.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-fr-rCA
+|   |   |   |   |   |   |   |       values-fr-rCA.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-gl
+|   |   |   |   |   |   |   |       values-gl.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-gu
+|   |   |   |   |   |   |   |       values-gu.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-h320dp-port-v13
+|   |   |   |   |   |   |   |       values-h320dp-port-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-h360dp-land-v13
+|   |   |   |   |   |   |   |       values-h360dp-land-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-h480dp-land-v13
+|   |   |   |   |   |   |   |       values-h480dp-land-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-h480dp-v13
+|   |   |   |   |   |   |   |       values-h480dp-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-h550dp-port-v13
+|   |   |   |   |   |   |   |       values-h550dp-port-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-h720dp-v13
+|   |   |   |   |   |   |   |       values-h720dp-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-hdpi-v4
+|   |   |   |   |   |   |   |       values-hdpi-v4.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-he
+|   |   |   |   |   |   |   |       values-he.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-hi
+|   |   |   |   |   |   |   |       values-hi.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-hr
+|   |   |   |   |   |   |   |       values-hr.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-hu
+|   |   |   |   |   |   |   |       values-hu.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-hy
+|   |   |   |   |   |   |   |       values-hy.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-in
+|   |   |   |   |   |   |   |       values-in.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-is
+|   |   |   |   |   |   |   |       values-is.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-it
+|   |   |   |   |   |   |   |       values-it.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-iw
+|   |   |   |   |   |   |   |       values-iw.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ja
+|   |   |   |   |   |   |   |       values-ja.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ka
+|   |   |   |   |   |   |   |       values-ka.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-kk
+|   |   |   |   |   |   |   |       values-kk.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-km
+|   |   |   |   |   |   |   |       values-km.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-kn
+|   |   |   |   |   |   |   |       values-kn.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ko
+|   |   |   |   |   |   |   |       values-ko.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ky
+|   |   |   |   |   |   |   |       values-ky.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-land
+|   |   |   |   |   |   |   |       values-land.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-large-v4
+|   |   |   |   |   |   |   |       values-large-v4.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ldltr-v21
+|   |   |   |   |   |   |   |       values-ldltr-v21.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ldrtl-v17
+|   |   |   |   |   |   |   |       values-ldrtl-v17.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-lo
+|   |   |   |   |   |   |   |       values-lo.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-lt
+|   |   |   |   |   |   |   |       values-lt.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-lv
+|   |   |   |   |   |   |   |       values-lv.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-mk
+|   |   |   |   |   |   |   |       values-mk.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ml
+|   |   |   |   |   |   |   |       values-ml.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-mn
+|   |   |   |   |   |   |   |       values-mn.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-mr
+|   |   |   |   |   |   |   |       values-mr.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ms
+|   |   |   |   |   |   |   |       values-ms.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-my
+|   |   |   |   |   |   |   |       values-my.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-nb
+|   |   |   |   |   |   |   |       values-nb.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ne
+|   |   |   |   |   |   |   |       values-ne.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-night-v8
+|   |   |   |   |   |   |   |       values-night-v8.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-nl
+|   |   |   |   |   |   |   |       values-nl.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-or
+|   |   |   |   |   |   |   |       values-or.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-pa
+|   |   |   |   |   |   |   |       values-pa.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-pl
+|   |   |   |   |   |   |   |       values-pl.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-port
+|   |   |   |   |   |   |   |       values-port.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-pt
+|   |   |   |   |   |   |   |       values-pt.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-pt-rBR
+|   |   |   |   |   |   |   |       values-pt-rBR.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-pt-rPT
+|   |   |   |   |   |   |   |       values-pt-rPT.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ro
+|   |   |   |   |   |   |   |       values-ro.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ru
+|   |   |   |   |   |   |   |       values-ru.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-si
+|   |   |   |   |   |   |   |       values-si.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sk
+|   |   |   |   |   |   |   |       values-sk.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sl
+|   |   |   |   |   |   |   |       values-sl.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sq
+|   |   |   |   |   |   |   |       values-sq.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sr
+|   |   |   |   |   |   |   |       values-sr.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sv
+|   |   |   |   |   |   |   |       values-sv.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sw
+|   |   |   |   |   |   |   |       values-sw.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-sw600dp-v13
+|   |   |   |   |   |   |   |       values-sw600dp-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ta
+|   |   |   |   |   |   |   |       values-ta.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-te
+|   |   |   |   |   |   |   |       values-te.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-th
+|   |   |   |   |   |   |   |       values-th.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-tl
+|   |   |   |   |   |   |   |       values-tl.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-tr
+|   |   |   |   |   |   |   |       values-tr.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-uk
+|   |   |   |   |   |   |   |       values-uk.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-ur
+|   |   |   |   |   |   |   |       values-ur.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-uz
+|   |   |   |   |   |   |   |       values-uz.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v16
+|   |   |   |   |   |   |   |       values-v16.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v17
+|   |   |   |   |   |   |   |       values-v17.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v18
+|   |   |   |   |   |   |   |       values-v18.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v21
+|   |   |   |   |   |   |   |       values-v21.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v22
+|   |   |   |   |   |   |   |       values-v22.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v23
+|   |   |   |   |   |   |   |       values-v23.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v24
+|   |   |   |   |   |   |   |       values-v24.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v25
+|   |   |   |   |   |   |   |       values-v25.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v26
+|   |   |   |   |   |   |   |       values-v26.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v28
+|   |   |   |   |   |   |   |       values-v28.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v31
+|   |   |   |   |   |   |   |       values-v31.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v34
+|   |   |   |   |   |   |   |       values-v34.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-v35
+|   |   |   |   |   |   |   |       values-v35.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-vi
+|   |   |   |   |   |   |   |       values-vi.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-w320dp-land-v13
+|   |   |   |   |   |   |   |       values-w320dp-land-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-w360dp-port-v13
+|   |   |   |   |   |   |   |       values-w360dp-port-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-w400dp-port-v13
+|   |   |   |   |   |   |   |       values-w400dp-port-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-w600dp-land-v13
+|   |   |   |   |   |   |   |       values-w600dp-land-v13.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-watch-v20
+|   |   |   |   |   |   |   |       values-watch-v20.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-watch-v21
+|   |   |   |   |   |   |   |       values-watch-v21.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-xlarge-v4
+|   |   |   |   |   |   |   |       values-xlarge-v4.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-zh-rCN
+|   |   |   |   |   |   |   |       values-zh-rCN.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-zh-rHK
+|   |   |   |   |   |   |   |       values-zh-rHK.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   +---values-zh-rTW
+|   |   |   |   |   |   |   |       values-zh-rTW.xml
+|   |   |   |   |   |   |   |       
+|   |   |   |   |   |   |   \---values-zu
+|   |   |   |   |   |   |           values-zu.xml
+|   |   |   |   |   |   |           
+|   |   |   |   |   |   \---stripped.dir
+|   |   |   |   |   |       \---layout
+|   |   |   |   |   |               activity_create_task.xml
+|   |   |   |   |   |               activity_forgot_password.xml
+|   |   |   |   |   |               activity_history.xml
+|   |   |   |   |   |               activity_login.xml
+|   |   |   |   |   |               activity_main.xml
+|   |   |   |   |   |               activity_notification.xml
+|   |   |   |   |   |               activity_profile.xml
+|   |   |   |   |   |               activity_register.xml
+|   |   |   |   |   |               activity_tracking.xml
+|   |   |   |   |   |               item_active_task.xml
+|   |   |   |   |   |               item_history.xml
+|   |   |   |   |   |               item_notification.xml
+|   |   |   |   |   |               
+|   |   |   |   |   \---packageDebugResources
+|   |   |   |   |       |   compile-file-map.properties
+|   |   |   |   |       |   merger.xml
+|   |   |   |   |       |   
+|   |   |   |   |       +---merged.dir
+|   |   |   |   |       |   +---values
+|   |   |   |   |       |   |       values.xml
+|   |   |   |   |       |   |       
+|   |   |   |   |       |   \---values-night-v8
+|   |   |   |   |       |           values-night-v8.xml
+|   |   |   |   |       |           
+|   |   |   |   |       \---stripped.dir
+|   |   |   |   |           \---layout
+|   |   |   |   |                   activity_create_task.xml
+|   |   |   |   |                   activity_forgot_password.xml
+|   |   |   |   |                   activity_history.xml
+|   |   |   |   |                   activity_login.xml
+|   |   |   |   |                   activity_main.xml
+|   |   |   |   |                   activity_notification.xml
+|   |   |   |   |                   activity_profile.xml
+|   |   |   |   |                   activity_register.xml
+|   |   |   |   |                   activity_tracking.xml
+|   |   |   |   |                   item_active_task.xml
+|   |   |   |   |                   item_history.xml
+|   |   |   |   |                   item_notification.xml
+|   |   |   |   |                   
+|   |   |   |   +---debug-mergeJavaRes
+|   |   |   |   |   |   merge-state
+|   |   |   |   |   |   
+|   |   |   |   |   \---zip-cache
+|   |   |   |   |           +d2mAL16DDGqOxxrpzmrvA==
+|   |   |   |   |           +kg8+VWw4OR9ERoULiBQsQ==
+|   |   |   |   |           +SV56k+tQbU8reD2lVKLeQ==
+|   |   |   |   |           +XCXelHd25F54pwfYsU7lg==
+|   |   |   |   |           115Us29Oi7_Db7QAEulGSQ==
+|   |   |   |   |           1gllQjB_I17KPOrKx6hh3Q==
+|   |   |   |   |           1tP4iIKZPIpP60QxTyN8Xw==
+|   |   |   |   |           267NWKAJeTcXdMapSjfWvw==
+|   |   |   |   |           3+1TjrVKyOhmWmuDKg6hQQ==
+|   |   |   |   |           3A+86K1wRQTlhfVOvRG9eg==
+|   |   |   |   |           3IQTnQDsg3gZVTTuWA+vyA==
+|   |   |   |   |           4kfp46Fbgs9Z0gGSlRDftg==
+|   |   |   |   |           5abOO1OwtMV0JxW89q+EpA==
+|   |   |   |   |           5_0dq77H0PyEhgIQ7wXuGg==
+|   |   |   |   |           6m7p1cVN6u3OYSFOxaVuhw==
+|   |   |   |   |           6Ob36ZfmBwGlwtfuJF_u4A==
+|   |   |   |   |           6q_CM8IY7vHDjWssLLqwdQ==
+|   |   |   |   |           7Bo0wSXWwZGXu5zNi9KieQ==
+|   |   |   |   |           7chZT0+WZ+UPYh6cxRxS1Q==
+|   |   |   |   |           7GvVHMeCstWOoNoI+qzzig==
+|   |   |   |   |           9eJ6xUOyqVpvbHEhP3c3lg==
+|   |   |   |   |           9vbWpheLPAhhvBbpWZqPhA==
+|   |   |   |   |           AL+XqQmTkR+FE4XI_reb5w==
+|   |   |   |   |           aR80dDdyb84ZxP+Uyu8I+Q==
+|   |   |   |   |           AstmpJvEb3JJJfTeblopWg==
+|   |   |   |   |           AuhwvexekDqBc6eZ0Su5dw==
+|   |   |   |   |           av6pN89yQUrHDcqajJPxEg==
+|   |   |   |   |           AZM1r1289x4aNN3zuPCrgw==
+|   |   |   |   |           Bo4F57IvfsiyH2BjMJKf0g==
+|   |   |   |   |           BoavErUnEk2chv1PzWROzw==
+|   |   |   |   |           BtxFn2_VG2ShDo6pxYoQ0Q==
+|   |   |   |   |           bz9aBp0AiOGThud989nr+A==
+|   |   |   |   |           bzbGHRfU4W4tsSwgbmVhXg==
+|   |   |   |   |           cfcba1h79OuBVunfDtdBXg==
+|   |   |   |   |           CogORUej0ZmpOO49ejoGdQ==
+|   |   |   |   |           DAwKTSsZZL6YxNYK2yOHWw==
+|   |   |   |   |           DIFJtkAmwSafcDYyiuWRmw==
+|   |   |   |   |           DLBzpOUpatGfw1rM+SECTg==
+|   |   |   |   |           DO0xHmPEXli_1kNaJSGc9g==
+|   |   |   |   |           DPPoNGJQwtzONFsVzDwPcw==
+|   |   |   |   |           ebRW7eDIXcGdx2axuOk9yg==
+|   |   |   |   |           eN_uTeZ7+3SfjvUg+nBhwA==
+|   |   |   |   |           eVnrsN73TPef0h+TPj7waQ==
+|   |   |   |   |           F8X65d7uF99bbpPok3bK2g==
+|   |   |   |   |           FAlEQekphyX+OGhwii0eEA==
+|   |   |   |   |           fQ0EiiL8YDmfjQHyocc8zg==
+|   |   |   |   |           FRLLAh6LKxlA7NsA3wFNeg==
+|   |   |   |   |           Fwz1mlbwnBRNpuRwcbcZFg==
+|   |   |   |   |           G2S9E_Nra55PztmqGgiZdw==
+|   |   |   |   |           h5g2vw0rC+J9HDPHHd6qSQ==
+|   |   |   |   |           hDk+BgIQ2RA3SKdsqX8QTA==
+|   |   |   |   |           heUtYE4XgFMCleo8sGdYkA==
+|   |   |   |   |           hrrkBlUhiybUF_AmbCLhJw==
+|   |   |   |   |           hu30Sof6rhMhsToFTHk5xQ==
+|   |   |   |   |           ijqd2t9CBnM3M9rh9tG6UA==
+|   |   |   |   |           ipGikTIFWm8Pk5tKzCai1Q==
+|   |   |   |   |           IRw2AK6Y_yYMTC71uE5e7Q==
+|   |   |   |   |           IX5xavECq3LdxsY+hiQegQ==
+|   |   |   |   |           izsezTyIFf+2lWt4PWxF8w==
+|   |   |   |   |           J8yF7dxZGvntnTGrA0tcAA==
+|   |   |   |   |           jeUfR+Pj6CwUpSuTQumx3A==
+|   |   |   |   |           jfAOjYXFeuyOHuFIBIvo6Q==
+|   |   |   |   |           JLNTwW+T_KWmsMRzVUu7nQ==
+|   |   |   |   |           JSFwbqC3yq5nbfWYl_BMag==
+|   |   |   |   |           jT9pfR3VH_LFdSOJqOObew==
+|   |   |   |   |           k3SdJ3ZOK09FM3GxzJ3wvg==
+|   |   |   |   |           K5NWTVokKvBXjEQYxQVSRw==
+|   |   |   |   |           M0xtSBLuacdRONHbMK+TMg==
+|   |   |   |   |           mFBW9sr4uG21mrgRwCx51A==
+|   |   |   |   |           mg5QtWRvVfUkUOTLGBkadw==
+|   |   |   |   |           mOOzupgS8MoXz9RQH5ht6A==
+|   |   |   |   |           NAB9n5RacXKiSxBKQJgvCQ==
+|   |   |   |   |           NlVwhodFXKhNL7zmpVgnhQ==
+|   |   |   |   |           nOdRJAvuyd38QWXpQkKZ6A==
+|   |   |   |   |           ocVcwNpo6vfi7TrQRo0VyQ==
+|   |   |   |   |           oeu7Jv_maZvFluLA9padlw==
+|   |   |   |   |           OJ5KITCfMpQI9y_xU8ixVA==
+|   |   |   |   |           oNf2HC6YcJzmLtId29cGCw==
+|   |   |   |   |           ous5cFwffFdsF0uBJm9lHw==
+|   |   |   |   |           owwAl3hF6pe+93WDDQfyWw==
+|   |   |   |   |           OzUR2bERSw1mYWfhxQjodg==
+|   |   |   |   |           pwmwcDKHx5HEmtgBFHwJhw==
+|   |   |   |   |           qa9K9OtLukyQHNVLVkIU4A==
+|   |   |   |   |           qv1JLYYIqOE6+5qsI9BT+w==
+|   |   |   |   |           QZjVA79gG9qBIAitTPCjjA==
+|   |   |   |   |           r0+MwfdYPxGPhDNcPrXuWQ==
+|   |   |   |   |           r4spH3PQOxIHotUBLFn1aQ==
+|   |   |   |   |           riEmXLuloAG0TT9GgcmrRA==
+|   |   |   |   |           RN5LqLiPCk7zAZtjmlenOg==
+|   |   |   |   |           rRI55AyVMO37GOrfdv9xhQ==
+|   |   |   |   |           s9fT195pv1agL9eUNfLXSA==
+|   |   |   |   |           sOmkzeQndd+ANKpdrZZBRg==
+|   |   |   |   |           sRbKwfpAjd8jSJFUbNAQMA==
+|   |   |   |   |           SWE7BUkX4Phhq+kXgnFymg==
+|   |   |   |   |           TJIItct4XUtEIrGZ6qcDeg==
+|   |   |   |   |           TlhZ9fArEYxM1vtJ86cq2Q==
+|   |   |   |   |           TTgwmBLUHMyFYGJFe0EHWA==
+|   |   |   |   |           uIk+ueRJbtl3mYSjM1tSXg==
+|   |   |   |   |           UwtxaCoPQQKHidcsCSjyjA==
+|   |   |   |   |           Vl0wYJUuWYeb8L2ONqjMuA==
+|   |   |   |   |           vlzgxazEEBbOH62FW1CySA==
+|   |   |   |   |           VnCSPbi80GLteQGAxVd1dg==
+|   |   |   |   |           vxb1aroz9_K63tYkcpfO4A==
+|   |   |   |   |           w5SO3siIOlS2mp9gRAEXLA==
+|   |   |   |   |           WwWQS1FdUEmMnSNunwJijg==
+|   |   |   |   |           Xjff2WmLch0VNVdpyz1HJw==
+|   |   |   |   |           xrFIdJBzOswFyMSR4oAEtw==
+|   |   |   |   |           Y7KJy8QrcDEtTdOyRK1ydQ==
+|   |   |   |   |           Y7p7GrDrb9hniHm3q6OXfQ==
+|   |   |   |   |           yYqU2kKQdj98n3XmIwjaGA==
+|   |   |   |   |           Z1hWm1GZPQjiiN57qlh_Hg==
+|   |   |   |   |           ZOC8+WeE2GfxPnaxghhDyw==
+|   |   |   |   |           ZU8okuI+9jx7RE535Z++Hg==
+|   |   |   |   |           zVs5JcgxbfNaSL7GUAQVKQ==
+|   |   |   |   |           _nwYAWFKUgAHf+1KLpVEfA==
+|   |   |   |   |           _sdp8p2+1n47BmI0XI7R5Q==
+|   |   |   |   |           
+|   |   |   |   +---mergeDebugAssets
+|   |   |   |   |       merger.xml
+|   |   |   |   |       
+|   |   |   |   +---mergeDebugJniLibFolders
+|   |   |   |   |       merger.xml
+|   |   |   |   |       
+|   |   |   |   \---packageDebug
+|   |   |   |       \---tmp
+|   |   |   |           \---debug
+|   |   |   |               |   dex-renamer-state.txt
+|   |   |   |               |   
+|   |   |   |               \---zip-cache
+|   |   |   |                       androidResources
+|   |   |   |                       javaResources0
+|   |   |   |                       
+|   |   |   +---javac
+|   |   |   |   \---debug
+|   |   |   |       \---compileDebugJavaWithJavac
+|   |   |   |           \---classes
+|   |   |   |               \---com
+|   |   |   |                   \---example
+|   |   |   |                       \---autodeliveryapp
+|   |   |   |                           |   BottomNavActivity.class
+|   |   |   |                           |   BuildConfig.class
+|   |   |   |                           |   Constants.class
+|   |   |   |                           |   CreateTaskActivity$1.class
+|   |   |   |                           |   CreateTaskActivity$2.class
+|   |   |   |                           |   CreateTaskActivity$3.class
+|   |   |   |                           |   CreateTaskActivity$4.class
+|   |   |   |                           |   CreateTaskActivity$5.class
+|   |   |   |                           |   CreateTaskActivity$6.class
+|   |   |   |                           |   CreateTaskActivity$7.class
+|   |   |   |                           |   CreateTaskActivity.class
+|   |   |   |                           |   EdgeToEdgeHelper.class
+|   |   |   |                           |   FCMNotificationService.class
+|   |   |   |                           |   ForgotPasswordActivity.class
+|   |   |   |                           |   HistoryActivity$1.class
+|   |   |   |                           |   HistoryActivity.class
+|   |   |   |                           |   LoginActivity$1.class
+|   |   |   |                           |   LoginActivity$2.class
+|   |   |   |                           |   LoginActivity$3.class
+|   |   |   |                           |   LoginActivity.class
+|   |   |   |                           |   MainActivity$1.class
+|   |   |   |                           |   MainActivity$2.class
+|   |   |   |                           |   MainActivity.class
+|   |   |   |                           |   NotificationActivity$1.class
+|   |   |   |                           |   NotificationActivity.class
+|   |   |   |                           |   ProfileActivity$1.class
+|   |   |   |                           |   ProfileActivity.class
+|   |   |   |                           |   RegisterActivity.class
+|   |   |   |                           |   TrackingActivity.class
+|   |   |   |                           |   
+|   |   |   |                           +---adapters
+|   |   |   |                           |       ActiveTaskAdapter$OnTaskClickListener.class
+|   |   |   |                           |       ActiveTaskAdapter$ViewHolder.class
+|   |   |   |                           |       ActiveTaskAdapter.class
+|   |   |   |                           |       HistoryAdapter$ViewHolder.class
+|   |   |   |                           |       HistoryAdapter.class
+|   |   |   |                           |       NotificationAdapter$1.class
+|   |   |   |                           |       NotificationAdapter$ViewHolder.class
+|   |   |   |                           |       NotificationAdapter.class
+|   |   |   |                           |       
+|   |   |   |                           +---data
+|   |   |   |                           |       HistoryItem.class
+|   |   |   |                           |       NotificationItem.class
+|   |   |   |                           |       
+|   |   |   |                           +---databinding
+|   |   |   |                           |       ActivityCreateTaskBinding.class
+|   |   |   |                           |       ActivityForgotPasswordBinding.class
+|   |   |   |                           |       ActivityHistoryBinding.class
+|   |   |   |                           |       ActivityLoginBinding.class
+|   |   |   |                           |       ActivityMainBinding.class
+|   |   |   |                           |       ActivityNotificationBinding.class
+|   |   |   |                           |       ActivityProfileBinding.class
+|   |   |   |                           |       ActivityRegisterBinding.class
+|   |   |   |                           |       ActivityTrackingBinding.class
+|   |   |   |                           |       ItemActiveTaskBinding.class
+|   |   |   |                           |       ItemHistoryBinding.class
+|   |   |   |                           |       ItemNotificationBinding.class
+|   |   |   |                           |       
+|   |   |   |                           +---model
+|   |   |   |                           |       RobotAck.class
+|   |   |   |                           |       RobotCommand.class
+|   |   |   |                           |       RobotStatusMessage.class
+|   |   |   |                           |       RobotTelemetry.class
+|   |   |   |                           |       
+|   |   |   |                           +---mqtt
+|   |   |   |                           |       MqttConfig.class
+|   |   |   |                           |       MqttFirebaseBridge.class
+|   |   |   |                           |       MqttListener.class
+|   |   |   |                           |       MqttManager.class
+|   |   |   |                           |       MqttPayloadParser.class
+|   |   |   |                           |       MqttTopics.class
+|   |   |   |                           |       
+|   |   |   |                           \---utils
+|   |   |   |                                   NotificationUtils.class
+|   |   |   |                                   PhoneUtils.class
+|   |   |   |                                   SlotUtils.class
+|   |   |   |                                   TaskStatus.class
+|   |   |   |                                   
+|   |   |   +---linked_resources_binary_format
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugResources
+|   |   |   |               linked-resources-binary-format-debug.ap_
+|   |   |   |               output-metadata.json
+|   |   |   |               
+|   |   |   +---local_only_symbol_list
+|   |   |   |   \---debug
+|   |   |   |       \---parseDebugLocalResources
+|   |   |   |               R-def.txt
+|   |   |   |               
+|   |   |   +---manifest_merge_blame_file
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugMainManifest
+|   |   |   |               manifest-merger-blame-debug-report.txt
+|   |   |   |               
+|   |   |   +---merged_java_res
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugJavaResource
+|   |   |   |               base.jar
+|   |   |   |               
+|   |   |   +---merged_jni_libs
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugJniLibFolders
+|   |   |   |           \---out
+|   |   |   +---merged_manifest
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugMainManifest
+|   |   |   |               AndroidManifest.xml
+|   |   |   |               
+|   |   |   +---merged_manifests
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugManifest
+|   |   |   |               AndroidManifest.xml
+|   |   |   |               output-metadata.json
+|   |   |   |               
+|   |   |   +---merged_native_libs
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugNativeLibs
+|   |   |   |           \---out
+|   |   |   |               \---lib
+|   |   |   |                   +---arm64-v8a
+|   |   |   |                   |       libmaplibre.so
+|   |   |   |                   |       
+|   |   |   |                   +---armeabi-v7a
+|   |   |   |                   |       libmaplibre.so
+|   |   |   |                   |       
+|   |   |   |                   +---x86
+|   |   |   |                   |       libmaplibre.so
+|   |   |   |                   |       
+|   |   |   |                   \---x86_64
+|   |   |   |                           libmaplibre.so
+|   |   |   |                           
+|   |   |   +---merged_res
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugResources
+|   |   |   |               color_bottom_nav_color.xml.flat
+|   |   |   |               drawable_bg_bottom_sheet_rounded.xml.flat
+|   |   |   |               drawable_bg_button_green.xml.flat
+|   |   |   |               drawable_bg_card_outlined.xml.flat
+|   |   |   |               drawable_bg_tag_blue.xml.flat
+|   |   |   |               drawable_bg_tag_green.xml.flat
+|   |   |   |               drawable_bg_tag_orange.xml.flat
+|   |   |   |               drawable_bg_tag_red.xml.flat
+|   |   |   |               drawable_ic_back.xml.flat
+|   |   |   |               drawable_ic_nav_history.xml.flat
+|   |   |   |               drawable_ic_nav_home.xml.flat
+|   |   |   |               drawable_ic_nav_notification.xml.flat
+|   |   |   |               drawable_ic_nav_profile.xml.flat
+|   |   |   |               layout_activity_create_task.xml.flat
+|   |   |   |               layout_activity_forgot_password.xml.flat
+|   |   |   |               layout_activity_history.xml.flat
+|   |   |   |               layout_activity_login.xml.flat
+|   |   |   |               layout_activity_main.xml.flat
+|   |   |   |               layout_activity_notification.xml.flat
+|   |   |   |               layout_activity_profile.xml.flat
+|   |   |   |               layout_activity_register.xml.flat
+|   |   |   |               layout_activity_tracking.xml.flat
+|   |   |   |               layout_item_active_task.xml.flat
+|   |   |   |               layout_item_history.xml.flat
+|   |   |   |               layout_item_notification.xml.flat
+|   |   |   |               menu_bottom_nav_menu.xml.flat
+|   |   |   |               mipmap-hdpi_ic_launcher.webp.flat
+|   |   |   |               mipmap-hdpi_ic_launcher_round.webp.flat
+|   |   |   |               values-af_values-af.arsc.flat
+|   |   |   |               values-am_values-am.arsc.flat
+|   |   |   |               values-ar_values-ar.arsc.flat
+|   |   |   |               values-as_values-as.arsc.flat
+|   |   |   |               values-az_values-az.arsc.flat
+|   |   |   |               values-b+es+419_values-b+es+419.arsc.flat
+|   |   |   |               values-b+sr+Latn_values-b+sr+Latn.arsc.flat
+|   |   |   |               values-be_values-be.arsc.flat
+|   |   |   |               values-bg_values-bg.arsc.flat
+|   |   |   |               values-bn_values-bn.arsc.flat
+|   |   |   |               values-bs_values-bs.arsc.flat
+|   |   |   |               values-ca_values-ca.arsc.flat
+|   |   |   |               values-cs_values-cs.arsc.flat
+|   |   |   |               values-da_values-da.arsc.flat
+|   |   |   |               values-de_values-de.arsc.flat
+|   |   |   |               values-el_values-el.arsc.flat
+|   |   |   |               values-en-rAU_values-en-rAU.arsc.flat
+|   |   |   |               values-en-rCA_values-en-rCA.arsc.flat
+|   |   |   |               values-en-rGB_values-en-rGB.arsc.flat
+|   |   |   |               values-en-rIN_values-en-rIN.arsc.flat
+|   |   |   |               values-en-rXC_values-en-rXC.arsc.flat
+|   |   |   |               values-es-rUS_values-es-rUS.arsc.flat
+|   |   |   |               values-es_values-es.arsc.flat
+|   |   |   |               values-et_values-et.arsc.flat
+|   |   |   |               values-eu_values-eu.arsc.flat
+|   |   |   |               values-fa_values-fa.arsc.flat
+|   |   |   |               values-fi_values-fi.arsc.flat
+|   |   |   |               values-fr-rCA_values-fr-rCA.arsc.flat
+|   |   |   |               values-fr_values-fr.arsc.flat
+|   |   |   |               values-gl_values-gl.arsc.flat
+|   |   |   |               values-gu_values-gu.arsc.flat
+|   |   |   |               values-h320dp-port-v13_values-h320dp-port-v13.arsc.flat
+|   |   |   |               values-h360dp-land-v13_values-h360dp-land-v13.arsc.flat
+|   |   |   |               values-h480dp-land-v13_values-h480dp-land-v13.arsc.flat
+|   |   |   |               values-h480dp-v13_values-h480dp-v13.arsc.flat
+|   |   |   |               values-h550dp-port-v13_values-h550dp-port-v13.arsc.flat
+|   |   |   |               values-h720dp-v13_values-h720dp-v13.arsc.flat
+|   |   |   |               values-hdpi-v4_values-hdpi-v4.arsc.flat
+|   |   |   |               values-he_values-he.arsc.flat
+|   |   |   |               values-hi_values-hi.arsc.flat
+|   |   |   |               values-hr_values-hr.arsc.flat
+|   |   |   |               values-hu_values-hu.arsc.flat
+|   |   |   |               values-hy_values-hy.arsc.flat
+|   |   |   |               values-in_values-in.arsc.flat
+|   |   |   |               values-is_values-is.arsc.flat
+|   |   |   |               values-it_values-it.arsc.flat
+|   |   |   |               values-iw_values-iw.arsc.flat
+|   |   |   |               values-ja_values-ja.arsc.flat
+|   |   |   |               values-ka_values-ka.arsc.flat
+|   |   |   |               values-kk_values-kk.arsc.flat
+|   |   |   |               values-km_values-km.arsc.flat
+|   |   |   |               values-kn_values-kn.arsc.flat
+|   |   |   |               values-ko_values-ko.arsc.flat
+|   |   |   |               values-ky_values-ky.arsc.flat
+|   |   |   |               values-land_values-land.arsc.flat
+|   |   |   |               values-large-v4_values-large-v4.arsc.flat
+|   |   |   |               values-ldltr-v21_values-ldltr-v21.arsc.flat
+|   |   |   |               values-ldrtl-v17_values-ldrtl-v17.arsc.flat
+|   |   |   |               values-lo_values-lo.arsc.flat
+|   |   |   |               values-lt_values-lt.arsc.flat
+|   |   |   |               values-lv_values-lv.arsc.flat
+|   |   |   |               values-mk_values-mk.arsc.flat
+|   |   |   |               values-ml_values-ml.arsc.flat
+|   |   |   |               values-mn_values-mn.arsc.flat
+|   |   |   |               values-mr_values-mr.arsc.flat
+|   |   |   |               values-ms_values-ms.arsc.flat
+|   |   |   |               values-my_values-my.arsc.flat
+|   |   |   |               values-nb_values-nb.arsc.flat
+|   |   |   |               values-ne_values-ne.arsc.flat
+|   |   |   |               values-night-v8_values-night-v8.arsc.flat
+|   |   |   |               values-nl_values-nl.arsc.flat
+|   |   |   |               values-or_values-or.arsc.flat
+|   |   |   |               values-pa_values-pa.arsc.flat
+|   |   |   |               values-pl_values-pl.arsc.flat
+|   |   |   |               values-port_values-port.arsc.flat
+|   |   |   |               values-pt-rBR_values-pt-rBR.arsc.flat
+|   |   |   |               values-pt-rPT_values-pt-rPT.arsc.flat
+|   |   |   |               values-pt_values-pt.arsc.flat
+|   |   |   |               values-ro_values-ro.arsc.flat
+|   |   |   |               values-ru_values-ru.arsc.flat
+|   |   |   |               values-si_values-si.arsc.flat
+|   |   |   |               values-sk_values-sk.arsc.flat
+|   |   |   |               values-sl_values-sl.arsc.flat
+|   |   |   |               values-sq_values-sq.arsc.flat
+|   |   |   |               values-sr_values-sr.arsc.flat
+|   |   |   |               values-sv_values-sv.arsc.flat
+|   |   |   |               values-sw600dp-v13_values-sw600dp-v13.arsc.flat
+|   |   |   |               values-sw_values-sw.arsc.flat
+|   |   |   |               values-ta_values-ta.arsc.flat
+|   |   |   |               values-te_values-te.arsc.flat
+|   |   |   |               values-th_values-th.arsc.flat
+|   |   |   |               values-tl_values-tl.arsc.flat
+|   |   |   |               values-tr_values-tr.arsc.flat
+|   |   |   |               values-uk_values-uk.arsc.flat
+|   |   |   |               values-ur_values-ur.arsc.flat
+|   |   |   |               values-uz_values-uz.arsc.flat
+|   |   |   |               values-v16_values-v16.arsc.flat
+|   |   |   |               values-v17_values-v17.arsc.flat
+|   |   |   |               values-v18_values-v18.arsc.flat
+|   |   |   |               values-v21_values-v21.arsc.flat
+|   |   |   |               values-v22_values-v22.arsc.flat
+|   |   |   |               values-v23_values-v23.arsc.flat
+|   |   |   |               values-v24_values-v24.arsc.flat
+|   |   |   |               values-v25_values-v25.arsc.flat
+|   |   |   |               values-v26_values-v26.arsc.flat
+|   |   |   |               values-v28_values-v28.arsc.flat
+|   |   |   |               values-v31_values-v31.arsc.flat
+|   |   |   |               values-v34_values-v34.arsc.flat
+|   |   |   |               values-v35_values-v35.arsc.flat
+|   |   |   |               values-vi_values-vi.arsc.flat
+|   |   |   |               values-w320dp-land-v13_values-w320dp-land-v13.arsc.flat
+|   |   |   |               values-w360dp-port-v13_values-w360dp-port-v13.arsc.flat
+|   |   |   |               values-w400dp-port-v13_values-w400dp-port-v13.arsc.flat
+|   |   |   |               values-w600dp-land-v13_values-w600dp-land-v13.arsc.flat
+|   |   |   |               values-watch-v20_values-watch-v20.arsc.flat
+|   |   |   |               values-watch-v21_values-watch-v21.arsc.flat
+|   |   |   |               values-xlarge-v4_values-xlarge-v4.arsc.flat
+|   |   |   |               values-zh-rCN_values-zh-rCN.arsc.flat
+|   |   |   |               values-zh-rHK_values-zh-rHK.arsc.flat
+|   |   |   |               values-zh-rTW_values-zh-rTW.arsc.flat
+|   |   |   |               values-zu_values-zu.arsc.flat
+|   |   |   |               values_values.arsc.flat
+|   |   |   |               xml_backup_rules.xml.flat
+|   |   |   |               xml_data_extraction_rules.xml.flat
+|   |   |   |               
+|   |   |   +---merged_res_blame_folder
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugResources
+|   |   |   |           \---out
+|   |   |   |               +---multi-v2
+|   |   |   |               |       mergeDebugResources.json
+|   |   |   |               |       values-af.json
+|   |   |   |               |       values-am.json
+|   |   |   |               |       values-ar.json
+|   |   |   |               |       values-as.json
+|   |   |   |               |       values-az.json
+|   |   |   |               |       values-b+es+419.json
+|   |   |   |               |       values-b+sr+Latn.json
+|   |   |   |               |       values-be.json
+|   |   |   |               |       values-bg.json
+|   |   |   |               |       values-bn.json
+|   |   |   |               |       values-bs.json
+|   |   |   |               |       values-ca.json
+|   |   |   |               |       values-cs.json
+|   |   |   |               |       values-da.json
+|   |   |   |               |       values-de.json
+|   |   |   |               |       values-el.json
+|   |   |   |               |       values-en-rAU.json
+|   |   |   |               |       values-en-rCA.json
+|   |   |   |               |       values-en-rGB.json
+|   |   |   |               |       values-en-rIN.json
+|   |   |   |               |       values-en-rXC.json
+|   |   |   |               |       values-es-rUS.json
+|   |   |   |               |       values-es.json
+|   |   |   |               |       values-et.json
+|   |   |   |               |       values-eu.json
+|   |   |   |               |       values-fa.json
+|   |   |   |               |       values-fi.json
+|   |   |   |               |       values-fr-rCA.json
+|   |   |   |               |       values-fr.json
+|   |   |   |               |       values-gl.json
+|   |   |   |               |       values-gu.json
+|   |   |   |               |       values-h320dp-port-v13.json
+|   |   |   |               |       values-h360dp-land-v13.json
+|   |   |   |               |       values-h480dp-land-v13.json
+|   |   |   |               |       values-h480dp-v13.json
+|   |   |   |               |       values-h550dp-port-v13.json
+|   |   |   |               |       values-h720dp-v13.json
+|   |   |   |               |       values-hdpi-v4.json
+|   |   |   |               |       values-he.json
+|   |   |   |               |       values-hi.json
+|   |   |   |               |       values-hr.json
+|   |   |   |               |       values-hu.json
+|   |   |   |               |       values-hy.json
+|   |   |   |               |       values-in.json
+|   |   |   |               |       values-is.json
+|   |   |   |               |       values-it.json
+|   |   |   |               |       values-iw.json
+|   |   |   |               |       values-ja.json
+|   |   |   |               |       values-ka.json
+|   |   |   |               |       values-kk.json
+|   |   |   |               |       values-km.json
+|   |   |   |               |       values-kn.json
+|   |   |   |               |       values-ko.json
+|   |   |   |               |       values-ky.json
+|   |   |   |               |       values-land.json
+|   |   |   |               |       values-large-v4.json
+|   |   |   |               |       values-ldltr-v21.json
+|   |   |   |               |       values-ldrtl-v17.json
+|   |   |   |               |       values-lo.json
+|   |   |   |               |       values-lt.json
+|   |   |   |               |       values-lv.json
+|   |   |   |               |       values-mk.json
+|   |   |   |               |       values-ml.json
+|   |   |   |               |       values-mn.json
+|   |   |   |               |       values-mr.json
+|   |   |   |               |       values-ms.json
+|   |   |   |               |       values-my.json
+|   |   |   |               |       values-nb.json
+|   |   |   |               |       values-ne.json
+|   |   |   |               |       values-night-v8.json
+|   |   |   |               |       values-nl.json
+|   |   |   |               |       values-or.json
+|   |   |   |               |       values-pa.json
+|   |   |   |               |       values-pl.json
+|   |   |   |               |       values-port.json
+|   |   |   |               |       values-pt-rBR.json
+|   |   |   |               |       values-pt-rPT.json
+|   |   |   |               |       values-pt.json
+|   |   |   |               |       values-ro.json
+|   |   |   |               |       values-ru.json
+|   |   |   |               |       values-si.json
+|   |   |   |               |       values-sk.json
+|   |   |   |               |       values-sl.json
+|   |   |   |               |       values-sq.json
+|   |   |   |               |       values-sr.json
+|   |   |   |               |       values-sv.json
+|   |   |   |               |       values-sw.json
+|   |   |   |               |       values-sw600dp-v13.json
+|   |   |   |               |       values-ta.json
+|   |   |   |               |       values-te.json
+|   |   |   |               |       values-th.json
+|   |   |   |               |       values-tl.json
+|   |   |   |               |       values-tr.json
+|   |   |   |               |       values-uk.json
+|   |   |   |               |       values-ur.json
+|   |   |   |               |       values-uz.json
+|   |   |   |               |       values-v16.json
+|   |   |   |               |       values-v17.json
+|   |   |   |               |       values-v18.json
+|   |   |   |               |       values-v21.json
+|   |   |   |               |       values-v22.json
+|   |   |   |               |       values-v23.json
+|   |   |   |               |       values-v24.json
+|   |   |   |               |       values-v25.json
+|   |   |   |               |       values-v26.json
+|   |   |   |               |       values-v28.json
+|   |   |   |               |       values-v31.json
+|   |   |   |               |       values-v34.json
+|   |   |   |               |       values-v35.json
+|   |   |   |               |       values-vi.json
+|   |   |   |               |       values-w320dp-land-v13.json
+|   |   |   |               |       values-w360dp-port-v13.json
+|   |   |   |               |       values-w400dp-port-v13.json
+|   |   |   |               |       values-w600dp-land-v13.json
+|   |   |   |               |       values-watch-v20.json
+|   |   |   |               |       values-watch-v21.json
+|   |   |   |               |       values-xlarge-v4.json
+|   |   |   |               |       values-zh-rCN.json
+|   |   |   |               |       values-zh-rHK.json
+|   |   |   |               |       values-zh-rTW.json
+|   |   |   |               |       values-zu.json
+|   |   |   |               |       values.json
+|   |   |   |               |       
+|   |   |   |               \---single
+|   |   |   |                       layout.json
+|   |   |   |                       mergeDebugResources.json
+|   |   |   |                       
+|   |   |   +---merged_test_only_native_libs
+|   |   |   |   \---debug
+|   |   |   |       \---mergeDebugNativeLibs
+|   |   |   |           \---out
+|   |   |   +---mixed_scope_dex_archive
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---navigation_json
+|   |   |   |   \---debug
+|   |   |   |       \---extractDeepLinksDebug
+|   |   |   |               navigation.json
+|   |   |   |               
+|   |   |   +---nested_resources_validation_report
+|   |   |   |   \---debug
+|   |   |   |       \---generateDebugResources
+|   |   |   |               nestedResourcesValidationReport.txt
+|   |   |   |               
+|   |   |   +---packaged_manifests
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugManifestForPackage
+|   |   |   |               AndroidManifest.xml
+|   |   |   |               output-metadata.json
+|   |   |   |               
+|   |   |   +---packaged_res
+|   |   |   |   \---debug
+|   |   |   |       \---packageDebugResources
+|   |   |   |           +---color
+|   |   |   |           |       bottom_nav_color.xml
+|   |   |   |           |       
+|   |   |   |           +---drawable
+|   |   |   |           |       bg_bottom_sheet_rounded.xml
+|   |   |   |           |       bg_button_green.xml
+|   |   |   |           |       bg_card_outlined.xml
+|   |   |   |           |       bg_tag_blue.xml
+|   |   |   |           |       bg_tag_green.xml
+|   |   |   |           |       bg_tag_orange.xml
+|   |   |   |           |       bg_tag_red.xml
+|   |   |   |           |       ic_back.xml
+|   |   |   |           |       ic_nav_history.xml
+|   |   |   |           |       ic_nav_home.xml
+|   |   |   |           |       ic_nav_notification.xml
+|   |   |   |           |       ic_nav_profile.xml
+|   |   |   |           |       
+|   |   |   |           +---layout
+|   |   |   |           |       activity_create_task.xml
+|   |   |   |           |       activity_forgot_password.xml
+|   |   |   |           |       activity_history.xml
+|   |   |   |           |       activity_login.xml
+|   |   |   |           |       activity_main.xml
+|   |   |   |           |       activity_notification.xml
+|   |   |   |           |       activity_profile.xml
+|   |   |   |           |       activity_register.xml
+|   |   |   |           |       activity_tracking.xml
+|   |   |   |           |       item_active_task.xml
+|   |   |   |           |       item_history.xml
+|   |   |   |           |       item_notification.xml
+|   |   |   |           |       
+|   |   |   |           +---menu
+|   |   |   |           |       bottom_nav_menu.xml
+|   |   |   |           |       
+|   |   |   |           +---mipmap-hdpi-v4
+|   |   |   |           |       ic_launcher.webp
+|   |   |   |           |       ic_launcher_round.webp
+|   |   |   |           |       
+|   |   |   |           +---values
+|   |   |   |           |       values.xml
+|   |   |   |           |       
+|   |   |   |           +---values-night-v8
+|   |   |   |           |       values-night-v8.xml
+|   |   |   |           |       
+|   |   |   |           \---xml
+|   |   |   |                   backup_rules.xml
+|   |   |   |                   data_extraction_rules.xml
+|   |   |   |                   
+|   |   |   +---project_dex_archive
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_0.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_1.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_2.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_3.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_4.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_5.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_6.jar
+|   |   |   |               |   b41d3c4dbefcacaf3004a5485ee16ee2ca0c7670e293789a0735c7208c947c5c_7.jar
+|   |   |   |               |   
+|   |   |   |               \---com
+|   |   |   |                   \---example
+|   |   |   |                       \---autodeliveryapp
+|   |   |   |                           |   BottomNavActivity.dex
+|   |   |   |                           |   BuildConfig.dex
+|   |   |   |                           |   Constants.dex
+|   |   |   |                           |   CreateTaskActivity$1.dex
+|   |   |   |                           |   CreateTaskActivity$2.dex
+|   |   |   |                           |   CreateTaskActivity$3.dex
+|   |   |   |                           |   CreateTaskActivity$4.dex
+|   |   |   |                           |   CreateTaskActivity$5.dex
+|   |   |   |                           |   CreateTaskActivity$6.dex
+|   |   |   |                           |   CreateTaskActivity$7.dex
+|   |   |   |                           |   CreateTaskActivity.dex
+|   |   |   |                           |   EdgeToEdgeHelper.dex
+|   |   |   |                           |   FCMNotificationService.dex
+|   |   |   |                           |   ForgotPasswordActivity.dex
+|   |   |   |                           |   HistoryActivity$1.dex
+|   |   |   |                           |   HistoryActivity.dex
+|   |   |   |                           |   LoginActivity$1.dex
+|   |   |   |                           |   LoginActivity$2.dex
+|   |   |   |                           |   LoginActivity$3.dex
+|   |   |   |                           |   LoginActivity.dex
+|   |   |   |                           |   MainActivity$1.dex
+|   |   |   |                           |   MainActivity$2.dex
+|   |   |   |                           |   MainActivity.dex
+|   |   |   |                           |   NotificationActivity$1.dex
+|   |   |   |                           |   NotificationActivity.dex
+|   |   |   |                           |   ProfileActivity$1.dex
+|   |   |   |                           |   ProfileActivity.dex
+|   |   |   |                           |   RegisterActivity.dex
+|   |   |   |                           |   TrackingActivity.dex
+|   |   |   |                           |   
+|   |   |   |                           +---adapters
+|   |   |   |                           |       ActiveTaskAdapter$OnTaskClickListener.dex
+|   |   |   |                           |       ActiveTaskAdapter$ViewHolder.dex
+|   |   |   |                           |       ActiveTaskAdapter.dex
+|   |   |   |                           |       HistoryAdapter$ViewHolder.dex
+|   |   |   |                           |       HistoryAdapter.dex
+|   |   |   |                           |       NotificationAdapter$1.dex
+|   |   |   |                           |       NotificationAdapter$ViewHolder.dex
+|   |   |   |                           |       NotificationAdapter.dex
+|   |   |   |                           |       
+|   |   |   |                           +---data
+|   |   |   |                           |       HistoryItem.dex
+|   |   |   |                           |       NotificationItem.dex
+|   |   |   |                           |       
+|   |   |   |                           +---databinding
+|   |   |   |                           |       ActivityCreateTaskBinding.dex
+|   |   |   |                           |       ActivityForgotPasswordBinding.dex
+|   |   |   |                           |       ActivityHistoryBinding.dex
+|   |   |   |                           |       ActivityLoginBinding.dex
+|   |   |   |                           |       ActivityMainBinding.dex
+|   |   |   |                           |       ActivityNotificationBinding.dex
+|   |   |   |                           |       ActivityProfileBinding.dex
+|   |   |   |                           |       ActivityRegisterBinding.dex
+|   |   |   |                           |       ActivityTrackingBinding.dex
+|   |   |   |                           |       ItemActiveTaskBinding.dex
+|   |   |   |                           |       ItemHistoryBinding.dex
+|   |   |   |                           |       ItemNotificationBinding.dex
+|   |   |   |                           |       
+|   |   |   |                           +---model
+|   |   |   |                           |       RobotAck.dex
+|   |   |   |                           |       RobotCommand.dex
+|   |   |   |                           |       RobotStatusMessage.dex
+|   |   |   |                           |       RobotTelemetry.dex
+|   |   |   |                           |       
+|   |   |   |                           +---mqtt
+|   |   |   |                           |       MqttConfig.dex
+|   |   |   |                           |       MqttFirebaseBridge.dex
+|   |   |   |                           |       MqttListener.dex
+|   |   |   |                           |       MqttManager.dex
+|   |   |   |                           |       MqttPayloadParser.dex
+|   |   |   |                           |       MqttTopics.dex
+|   |   |   |                           |       
+|   |   |   |                           \---utils
+|   |   |   |                                   NotificationUtils.dex
+|   |   |   |                                   PhoneUtils.dex
+|   |   |   |                                   SlotUtils.dex
+|   |   |   |                                   TaskStatus.dex
+|   |   |   |                                   
+|   |   |   +---runtime_symbol_list
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugResources
+|   |   |   |               R.txt
+|   |   |   |               
+|   |   |   +---signing_config_versions
+|   |   |   |   \---debug
+|   |   |   |       \---writeDebugSigningConfigVersions
+|   |   |   |               signing-config-versions.json
+|   |   |   |               
+|   |   |   +---stable_resource_ids_file
+|   |   |   |   \---debug
+|   |   |   |       \---processDebugResources
+|   |   |   |               stableIds.txt
+|   |   |   |               
+|   |   |   +---stripped_native_libs
+|   |   |   |   \---debug
+|   |   |   |       \---stripDebugDebugSymbols
+|   |   |   |           \---out
+|   |   |   |               \---lib
+|   |   |   |                   +---arm64-v8a
+|   |   |   |                   |       libmaplibre.so
+|   |   |   |                   |       
+|   |   |   |                   +---armeabi-v7a
+|   |   |   |                   |       libmaplibre.so
+|   |   |   |                   |       
+|   |   |   |                   +---x86
+|   |   |   |                   |       libmaplibre.so
+|   |   |   |                   |       
+|   |   |   |                   \---x86_64
+|   |   |   |                           libmaplibre.so
+|   |   |   |                           
+|   |   |   +---sub_project_dex_archive
+|   |   |   |   \---debug
+|   |   |   |       \---dexBuilderDebug
+|   |   |   |           \---out
+|   |   |   +---symbol_list_with_package_name
+|   |   |   |   \---debug
+|   |   |   |       \---generateDebugRFile
+|   |   |   |               package-aware-r.txt
+|   |   |   |               
+|   |   |   \---validate_signing_config
+|   |   |       \---debug
+|   |   |           \---validateSigningDebug
+|   |   +---outputs
+|   |   |   +---apk
+|   |   |   |   \---debug
+|   |   |   |           app-debug.apk
+|   |   |   |           output-metadata.json
+|   |   |   |           
+|   |   |   \---logs
+|   |   |           manifest-merger-debug-report.txt
+|   |   |           
+|   |   \---tmp
+|   |       \---compileDebugJavaWithJavac
+|   |               previous-compilation-data.bin
+|   |               
+|   +---sampledata
+|   \---src
+|       +---androidTest
+|       |   \---java
+|       |       \---com
+|       |           \---example
+|       |               \---autodeliveryapp
+|       |                       ExampleInstrumentedTest.java
+|       |                       
+|       +---main
+|       |   |   AndroidManifest.xml
+|       |   |   
+|       |   +---java
+|       |   |   \---com
+|       |   |       \---example
+|       |   |           \---autodeliveryapp
+|       |   |               |   BottomNavActivity.java
+|       |   |               |   Constants.java
+|       |   |               |   CreateTaskActivity.java
+|       |   |               |   EdgeToEdgeHelper.java
+|       |   |               |   FCMNotificationService.java
+|       |   |               |   ForgotPasswordActivity.java
+|       |   |               |   HistoryActivity.java
+|       |   |               |   LoginActivity.java
+|       |   |               |   MainActivity.java
+|       |   |               |   NotificationActivity.java
+|       |   |               |   ProfileActivity.java
+|       |   |               |   RegisterActivity.java
+|       |   |               |   TrackingActivity.java
+|       |   |               |   
+|       |   |               +---adapters
+|       |   |               |       ActiveTaskAdapter.java
+|       |   |               |       HistoryAdapter.java
+|       |   |               |       NotificationAdapter.java
+|       |   |               |       
+|       |   |               +---data
+|       |   |               |       HistoryItem.java
+|       |   |               |       NotificationItem.java
+|       |   |               |       
+|       |   |               +---model
+|       |   |               |       RobotAck.java
+|       |   |               |       RobotCommand.java
+|       |   |               |       RobotStatusMessage.java
+|       |   |               |       RobotTelemetry.java
+|       |   |               |       
+|       |   |               +---mqtt
+|       |   |               |       MqttConfig.java
+|       |   |               |       MqttFirebaseBridge.java
+|       |   |               |       MqttListener.java
+|       |   |               |       MqttManager.java
+|       |   |               |       MqttPayloadParser.java
+|       |   |               |       MqttTopics.java
+|       |   |               |       
+|       |   |               \---utils
+|       |   |                       NotificationUtils.java
+|       |   |                       PhoneUtils.java
+|       |   |                       SlotUtils.java
+|       |   |                       TaskStatus.java
+|       |   |                       
+|       |   \---res
+|       |       +---color
+|       |       |       bottom_nav_color.xml
+|       |       |       
+|       |       +---drawable
+|       |       |       bg_bottom_sheet_rounded.xml
+|       |       |       bg_button_green.xml
+|       |       |       bg_card_outlined.xml
+|       |       |       bg_tag_blue.xml
+|       |       |       bg_tag_green.xml
+|       |       |       bg_tag_orange.xml
+|       |       |       bg_tag_red.xml
+|       |       |       ic_back.xml
+|       |       |       ic_nav_history.xml
+|       |       |       ic_nav_home.xml
+|       |       |       ic_nav_notification.xml
+|       |       |       ic_nav_profile.xml
+|       |       |       
+|       |       +---layout
+|       |       |       activity_create_task.xml
+|       |       |       activity_forgot_password.xml
+|       |       |       activity_history.xml
+|       |       |       activity_login.xml
+|       |       |       activity_main.xml
+|       |       |       activity_notification.xml
+|       |       |       activity_profile.xml
+|       |       |       activity_register.xml
+|       |       |       activity_tracking.xml
+|       |       |       item_active_task.xml
+|       |       |       item_history.xml
+|       |       |       item_notification.xml
+|       |       |       
+|       |       +---menu
+|       |       |       bottom_nav_menu.xml
+|       |       |       
+|       |       +---mipmap-hdpi
+|       |       |       ic_launcher.webp
+|       |       |       ic_launcher_round.webp
+|       |       |       
+|       |       +---values
+|       |       |       colors.xml
+|       |       |       strings.xml
+|       |       |       themes.xml
+|       |       |       
+|       |       +---values-night
+|       |       |       themes.xml
+|       |       |       
+|       |       \---xml
+|       |               backup_rules.xml
+|       |               data_extraction_rules.xml
+|       |               
+|       \---test
+|           \---java
+|               \---com
+|                   \---example
+|                       \---autodeliveryapp
+|                               ExampleUnitTest.java
+|                               
++---build
+|   \---reports
+|       \---problems
+|               problems-report.html
+|               
++---docs
+|       CLEANUP_CANDIDATES_REPORT.md
+|       FCM_CLOUD_FUNCTIONS_PLAN.md
+|       FEATURE_COMPLETION_MATRIX.csv
+|       FIREBASE_RULES_REQUIRED.md
+|       FULL_PROJECT_AUDIT_AND_FLOW_REPORT.md
+|       MQTT_INTEGRATION_REPORT.md
+|       MQTT_ROBOT_SIMULATOR_GUIDE.md
+|       PROJECT_FILES.csv
+|       PROJECT_STATUS_REPORT.md
+|       
++---gradle
+|   |   gradle-daemon-jvm.properties
+|   |   libs.versions.toml
+|   |   
+|   \---wrapper
+|           gradle-wrapper.jar
+|           gradle-wrapper.properties
+|           
+\---logs
+        2026-05-20T14_14_44_109Z-debug-0.log
+        2026-05-20T14_16_47_114Z-debug-0.log
+        2026-05-20T14_17_59_217Z-debug-0.log
+        2026-05-20T14_18_11_246Z-debug-0.log
+        2026-05-20T14_18_34_196Z-debug-0.log
+        2026-05-20T14_18_52_424Z-debug-0.log
+        2026-05-20T15_02_44_503Z-debug-0.log
+        audit_cleanup.txt
+        audit_firebase.txt
+        audit_lang.txt
+        audit_mqtt.txt
+        audit_package.txt
+        audit_strings.txt
+        AutoDeliveryApp_runtime_full_20260626_003924.log
+        build_after_edge_to_edge_component7.log
+        build_after_feature2A_receiver_info.log
+        build_after_feature2B_robot_slots_ui.log
+        build_after_feature2C_slot_transaction.log
+        build_after_feature2D_recipient_mapping.log
+        build_after_feature_completion_audit.log
+        build_after_feature_completion_fix_pass.log
+        build_after_final_cleanup_verification.log
+        build_after_final_comment_xml_string_cleanup.log
+        build_after_final_english_cleanup_fix.log
+        build_after_fix_receiver_notification_flow.log
+        build_after_full_english_cleanup.log
+        build_after_full_feature_completion_audit.log
+        build_after_full_system_report_sync.log
+        build_after_language_profile_log_cleanup_final.log
+        build_after_language_switch_fix.log
+        build_after_language_switch_fix_cleanup_report_final.log
+        build_after_mqtt_integration_final.log
+        build_after_opus_partial.log
+        build_after_phase1_mqtt_dependency_config.log
+        build_after_phase2_mqtt_core.log
+        build_after_phase2_remove_payment.log
+        build_after_phase3_mqtt_firebase_bridge.log
+        build_after_phase4_real_notification.log
+        build_after_phase4_tracking_mqtt.log
+        build_after_phase5_create_task_publish_command.log
+        build_after_phaseA_english_normalization.log
+        build_after_phaseA_phone_normalization.log
+        build_after_phaseB_profile_language_switch.log
+        build_after_phaseB_receiver_notification_tracking.log
+        build_after_phaseC_slot_lifecycle.log
+        build_after_phaseD_status_notifications.log
+        build_after_phase_1.log
+        build_after_phase_5_3.log
+        build_after_project_status_report_merge.log
+        build_after_remaining_work_gate.log
+        build_after_remove_language_switch.log
+        build_audit_current_state.log
+        build_before_english_mqtt_fix_pass.log
+        build_before_english_single_language_cleanup.log
+        build_before_final_english_cleanup_fix.log
+        build_before_language_pass.log
+        build_before_language_switch_fix.log
+        build_before_mqtt_fix_pass.log
+        build_before_mqtt_integration.log
+        cleanup_candidates_after_final_fix.txt
+        hs_err_pid22280.log
+        replay_pid22280.log
+        

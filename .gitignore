@@ -1,0 +1,12 @@
+node_modules/
+serviceAccountKey.json
+.env
+*.env
+__pycache__/
+venv/
+.venv/
+.idea/
+.pio/
+*.log
+.vscode/
+compile_commands.json

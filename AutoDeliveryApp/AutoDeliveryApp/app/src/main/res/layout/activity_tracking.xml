@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.maplibre.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/btnBackWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_back"
+            android:background="#CCFFFFFF"
+            android:padding="10dp"
+            android:contentDescription="Back"/>
+    </FrameLayout>
+
+    <!-- Map overlay gradient -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/bg_top_gradient"/>
+
+    <!-- Zoom Controls -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/bg_zoom_controls"
+        android:elevation="4dp">
+        <ImageView
+            android:id="@+id/btnZoomIn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_plus"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Zoom In"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E1E2EC"/>
+        <ImageView
+            android:id="@+id/btnZoomOut"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_minus"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Zoom Out"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/titleOverlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="#CCFFFFFF"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tvMissionId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mission #RBT-0000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/text_primary"/>
+
+        <TextView
+            android:id="@+id/tvHeaderStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTIVE DELIVERY"
+            android:textSize="12sp"
+            android:textColor="@color/primary_green"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvMqttStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MQTT: Connecting..."
+            android:textSize="10sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+
+    <!-- Bottom Sheet -->
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_peekHeight="360dp"
+        app:behavior_hideable="false">
+
+        <!-- Handle -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:background="#DDDDDD"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Package Tracking"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+
+                        <TextView
+                            android:id="@+id/tvOrderId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order ID: #RBT-0000"
+                            android:textColor="@color/text_secondary"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+
+                        <TextView
+                            android:id="@+id/tvDistanceRemaining"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-- km"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_green"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="REMAINING"
+                            android:textSize="11sp"
+                            android:textColor="@color/text_secondary"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ETA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estimated Delivery Time"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"/>
+
+                    <TextView
+                        android:id="@+id/tvETA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-- mins"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary_green"/>
+                </LinearLayout>
+
+                <!-- BLE Action Container -->
+                <TextView
+                    android:id="@+id/tvBleSenderName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đơn hàng từ: ..."
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:visibility="gone"
+                    android:layout_marginBottom="8dp"/>
+
+                <LinearLayout
+                    android:id="@+id/llActionButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp">
+
+                    <Button
+                        android:id="@+id/btnCancelOrder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="Cancel Order"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/danger_red"/>
+
+                    <Button
+                        android:id="@+id/btnEditReceiver"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Edit Receiver"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/text_secondary"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnBleAction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Đã đặt hàng vào kho chứa"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/primary_green"/>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/card_stroke" android:layout_marginBottom="16dp"/>
+
+                <!-- Timeline Steps -->
+
+                <!-- Step 1: Order Received -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <!-- Icon circle -->
+                        <FrameLayout
+                            android:id="@+id/stepIconReceived"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@color/primary_green">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_step_received"
+                                app:tint="@android:color/white"
+                                android:contentDescription="Order received"/>
+                        </FrameLayout>
+                        <View android:layout_width="2dp" android:layout_height="30dp"
+                            android:background="@color/primary_green"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Order Placed" android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+                        <TextView android:id="@+id/tvReceivedTime"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="-- Warehouse"
+                            android:textColor="@color/text_secondary" android:textSize="13sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Step 2: Pending Assignment -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <FrameLayout
+                            android:id="@+id/stepIconPending"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@color/primary_green">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_status_pending"
+                                app:tint="@android:color/white"
+                                android:contentDescription="Pending Assignment"/>
+                        </FrameLayout>
+                        <View android:layout_width="2dp" android:layout_height="30dp"
+                            android:background="@color/primary_green"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:id="@+id/tvStepPendingLabel"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Pending Assignment" android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+                        <TextView android:id="@+id/tvStepPendingSub"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Waiting for robot assignment..."
+                            android:textColor="@color/text_secondary" android:textSize="13sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Step 2: Processing / Going to Pickup -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <FrameLayout
+                            android:id="@+id/stepIconPreparing"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@color/primary_green">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_step_preparing"
+                                app:tint="@android:color/white"
+                                android:contentDescription="Robot preparing"/>
+                        </FrameLayout>
+                        <View android:layout_width="2dp" android:layout_height="30dp"
+                            android:background="@color/primary_green"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:id="@+id/tvStepPreparingLabel"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Going to Pickup" android:textStyle="bold"
+                            android:textColor="@color/text_primary"/>
+                        <TextView android:id="@+id/tvStepPreparingSub"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Robot is on the way to pickup (A)"
+                            android:textColor="@color/text_secondary" android:textSize="13sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Step 3: Delivering -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <FrameLayout
+                            android:id="@+id/stepIconDelivering"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="#DDDDDD">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_step_delivering"
+                                app:tint="@android:color/white"
+                                android:contentDescription="Delivering"/>
+                        </FrameLayout>
+                        <View android:layout_width="2dp" android:layout_height="30dp"
+                            android:background="#DDDDDD"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:id="@+id/tvStepDeliveringLabel"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Delivering" android:textStyle="bold"
+                            android:textColor="@color/text_hint"/>
+                        <TextView android:id="@+id/tvDeliveryStatus"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            tools:text="Robot is on the way"
+                            android:textColor="@color/text_hint" android:textSize="13sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Step 4: Delivered -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <FrameLayout
+                            android:id="@+id/stepIconCompleted"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="#DDDDDD">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_step_completed"
+                                app:tint="@android:color/white"
+                                android:contentDescription="Delivered"/>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        <TextView android:id="@+id/tvStepCompletedLabel"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Delivered"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_hint"/>
+                        <TextView android:id="@+id/tvStepCompletedSub"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Upcoming"
+                            android:textColor="@color/text_hint" android:textSize="13sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
