@@ -10,3 +10,11 @@ venv/
 *.log
 .vscode/
 compile_commands.json
+
+# ===== Android & Build Logs =====
+.gradle/
+build/
+*.log
+*.xml
+local.properties
+
