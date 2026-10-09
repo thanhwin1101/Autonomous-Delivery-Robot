@@ -18,3 +18,7 @@ build/
 *.xml
 local.properties
 
+
+# Local engineering notes, tests & simulation
+robot/docs/
+robot/matlab/

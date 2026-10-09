@@ -2,6 +2,7 @@ import serial
 import threading
 import time
 import logging
+import math
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -38,6 +39,7 @@ class UartComm:
         self.sys_state = 'WAITING'
         
         self.lock = threading.Lock()
+        self.tx_lock = threading.Lock()
 
     def connect(self):
         try:
@@ -101,7 +103,8 @@ class UartComm:
         full_msg = f"{msg}*{crc:02X}\n"
         if self.ser and self.ser.is_open:
             try:
-                self.ser.write(full_msg.encode('utf-8'))
+                with self.tx_lock:
+                    self.ser.write(full_msg.encode('utf-8'))
             except Exception as e:
                 logger.error(f"Error sending UART data: {e}")
 
@@ -119,9 +122,13 @@ class UartComm:
                 time.sleep(1)
 
     def _parse_line(self, line: str):
+        if len(line) > 200 or '\x00' in line:
+            return
         if '*' in line:
             payload, crc_hex = line.rsplit('*', 1)
             try:
+                if len(crc_hex) != 2 or any(c not in '0123456789abcdefABCDEF' for c in crc_hex):
+                    return
                 received_crc = int(crc_hex, 16)
                 calc_crc = calculate_crc8(payload)
                 if received_crc != calc_crc:
@@ -132,6 +139,9 @@ class UartComm:
                 logger.warning(f"Invalid CRC format! Dropped: {line}")
                 return
 
+        elif line.startswith('ODO:'):
+            return # ESP32 ODO telemetry always carries CRC.
+
         parts = line.split(":")
         if not parts:
             return
@@ -140,28 +150,24 @@ class UartComm:
         with self.lock:
             if prefix == "ODO":
                 try:
-                    self.ticks_l = int(parts[1])
-                    self.ticks_r = int(parts[2])
-                    self.yaw = float(parts[3])
-                    self.imu_data["ax"] = int(parts[4])
-                    self.imu_data["ay"] = int(parts[5])
-                    self.imu_data["az"] = int(parts[6])
-                    self.imu_data["gx"] = int(parts[7])
-                    self.imu_data["gy"] = int(parts[8])
-                    self.imu_data["gz"] = float(parts[9]) / 131.0
-                    
-                    if len(parts) >= 13:
-                        # 13 parts: 0-12
-                        self.imu_data["gz_deg"] = float(parts[10])
-                        self.battery_pct = float(parts[11])
-                        self.tof_dist = int(parts[12])
-                    elif len(parts) == 12:
-                        # 12 parts: 0-11
-                        self.imu_data["gz_deg"] = float(parts[10])
-                        self.battery_pct = float(parts[11])
-                    elif len(parts) == 11:
-                        # 11 parts: 0-10
-                        self.battery_pct = float(parts[10])
+                    if len(parts) not in (11, 12, 13):
+                        return
+                    ticks_l, ticks_r = int(parts[1]), int(parts[2])
+                    yaw = float(parts[3])
+                    imu = {key: int(parts[i]) for key, i in
+                           (('ax', 4), ('ay', 5), ('az', 6), ('gx', 7), ('gy', 8))}
+                    imu['gz'] = float(parts[9]) / 131.0
+                    if len(parts) >= 12:
+                        imu['gz_deg'] = float(parts[10])
+                    battery = float(parts[11] if len(parts) >= 12 else parts[10])
+                    tof = int(parts[12]) if len(parts) == 13 else self.tof_dist
+                    if not all(math.isfinite(v) for v in (yaw, battery, *imu.values())) or not 0 <= battery <= 100 or not 0 <= tof <= 65535:
+                        return
+                    self.ticks_l, self.ticks_r, self.yaw = ticks_l, ticks_r, yaw
+                    self.imu_data.update(imu)
+                    self.battery_pct, self.tof_dist = battery, tof
+                    if len(parts) == 13:
+                        self.obstacle_flag = tof == 9999 or tof < 300
                 except ValueError as e:
                     logger.debug(f"Failed to parse ODO line: {line} - {e}")
             elif prefix == "DOOR" and len(parts) >= 2:

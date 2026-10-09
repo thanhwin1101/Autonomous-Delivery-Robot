@@ -1,51 +1,41 @@
-# Autonomous Delivery Robot (AGV) & IoT Fleet Dispatch Platform 🚚🤖
+# Autonomous Delivery Robot (AGV) & IoT Fleet Dispatch Platform
 
-[![Demo Video](https://img.shields.io/badge/Demo%20Video-Field%20Trial%20(In%20Prep)-lightgrey?style=for-the-badge&logo=youtube&logoColor=red)](#2-field-trial-showcase--demo-video)
-[![Architecture](https://img.shields.io/badge/Architecture-SBC%20Master%20(Pi%204)%20%2B%20ESP32%20RTOS-blue?style=for-the-badge)](#3-system-architecture)
-[![Firmware Stack](https://img.shields.io/badge/Firmware-Dual--Core%20FreeRTOS%20%7C%20C%2B%2B%20%7C%20200Hz%20PID-orange?style=for-the-badge)](#6-embedded-software-engineering)
-[![Navigation](https://img.shields.io/badge/Nav--Stack-Pure%20Pursuit%20%7C%20Madgwick%20AHRS%20%7C%20GPS-green?style=for-the-badge)](#5-engineering-design-decisions--trade-offs)
-[![IoT Cloud](https://img.shields.io/badge/Cloud%20Platform-Firebase%20%7C%20MQTT%20%7C%20React%20%7C%20Android-purple?style=for-the-badge)](#10-build-flash--deployment-guide)
+[![Architecture](https://img.shields.io/badge/Architecture-SBC%20Master%20(Pi%204)%20%2B%20ESP32%20RTOS-blue?style=for-the-badge)](#2-system-architecture)
+[![Firmware Stack](https://img.shields.io/badge/Firmware-Dual--Core%20FreeRTOS%20%7C%20C%2B%2B%20%7C%2050Hz%20nominal%20PID-orange?style=for-the-badge)](#5-embedded-software-engineering)
+[![Navigation](https://img.shields.io/badge/Nav--Stack-Pure%20Pursuit%20%7C%20GPS-green?style=for-the-badge)](#4-engineering-design-decisions--trade-offs)
+[![IoT Cloud](https://img.shields.io/badge/Cloud%20Platform-Firebase%20%7C%20MQTT%20%7C%20React%20%7C%20Android-purple?style=for-the-badge)](#9-build-flash--deployment-guide)
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 1. [System Overview](#1-system-overview)
-2. [Field Trial Showcase & Demo Video](#2-field-trial-showcase--demo-video)
-3. [System Architecture](#3-system-architecture)
-4. [Hardware Architecture & Electrical Diagram](#4-hardware-architecture--electrical-diagram)
-5. [Engineering Design Decisions & Trade-offs](#5-engineering-design-decisions--trade-offs)
-6. [Embedded Software Engineering](#6-embedded-software-engineering)
-7. [Finite State Machines](#7-finite-state-machines)
-8. [End-to-End Operational Workflow](#8-end-to-end-operational-workflow)
-9. [Hardware Wiring & Pin Mapping](#9-hardware-wiring--pin-mapping)
-10. [Build, Flash & Deployment Guide](#10-build-flash--deployment-guide)
-11. [Source Code Structure & Git Conventions](#11-source-code-structure--git-conventions)
+2. [System Architecture](#2-system-architecture)
+3. [Hardware Architecture & Electrical Diagram](#3-hardware-architecture--electrical-diagram)
+4. [Engineering Design Decisions & Trade-offs](#4-engineering-design-decisions--trade-offs)
+5. [Embedded Software Engineering](#5-embedded-software-engineering)
+6. [Finite State Machines](#6-finite-state-machines)
+7. [End-to-End Operational Workflow](#7-end-to-end-operational-workflow)
+8. [Hardware Wiring & Pin Mapping](#8-hardware-wiring--pin-mapping)
+9. [Build, Flash & Deployment Guide](#9-build-flash--deployment-guide)
+10. [Source Code Structure & Git Conventions](#10-source-code-structure--git-conventions)
 
 ---
 
 ## 1. System Overview
 
+> Source status: active firmware uses nominal 50 Hz control with blocking ToF, single-channel encoders and dynamic heap allocation. Madgwick/IMU fusion is not integrated. Navigation smoothing is linear interpolation plus moving average, not cubic spline. Hardware performance and physical wiring are not verified by code review. See [Vietnamese audit](robot/docs/embedded-audit.md) and [study guide](robot/docs/embedded-study-guide.vi.md).
+
+Future work, not implemented by this patch: integrate calibrated IMU/compass data into Madgwick and telemetry, verify encoder direction/overflow, and improve sensor scheduling and navigation validation after hardware measurements.
+
 This project develops an autonomous, weather-resistant **Outdoor Autonomous Delivery Robot (AGV)** ecosystem engineered for contactless last-mile logistics within university campuses and corporate complexes:
 
 1. **Client & Fleet Ecosystem:** Native **Android Application** for senders/receivers (order booking, live GPS route tracking, contactless proximity locker opening via BLE) and **Web Fleet Management Dashboard** (React 18 + Leaflet Map) for real-time fleet telematics and mission dispatching.
-2. **High-Level Navigator (Raspberry Pi 4):** Manages global GNSS positioning (U-blox Neo-M8N), trajectory smoothing via **Cubic Spline**, path tracking using **Pure Pursuit**, bidirectional MQTT telemetry over 4G-LTE/WiFi, and mission lifecycle orchestration.
-3. **Real-Time Motion & Security Controller (ESP32 Dual-Core):** Executes **FreeRTOS (SMP)** multi-threading, **Madgwick AHRS** sensor fusion (9-DoF IMU + Magnetometer), deterministic **Anti-Windup PID** closed-loop velocity control at 200Hz, sub-millisecond laser obstacle detection (VL53L0X ToF), and a local **BLE GATT Security Server**.
+2. **High-Level Navigator (Raspberry Pi 4):** Manages global GNSS positioning (U-blox Neo-M8N), trajectory smoothing via **linear interpolation + moving average**, path tracking using **Pure Pursuit**, bidirectional MQTT telemetry over 4G-LTE/WiFi, and mission lifecycle orchestration.
+3. **Real-Time Motion & Security Controller (ESP32 Dual-Core):** Executes **FreeRTOS** tasks pinned to two cores, nominal 20 ms velocity PID with integral clamping, and blocking VL53L0X ToF safety checks (Madgwick is declared but not updated), and a local **BLE GATT Security Server**.
 
 ---
 
-## 2. Field Trial Showcase & Demo Video
-
-> [!NOTE]
-> Physical outdoor field-trial recordings and GNSS trajectory validation videos are currently being cataloged and will be linked directly here upon release.
-
-### Verified Test Scenarios:
-* 📍 **Scenario 1 - Spline GPS Navigation:** The AGV accepts dispatch waypoints from the cloud broker, generates continuous spline-smoothed trajectories, and tracks target GPS coordinates outdoors.
-* 📍 **Scenario 2 - 2-Step Offline BLE Authentication:** Customers approach within a 3-meter radius; the Android app performs local BLE handshake, validates a 128-bit cryptographic token, and actuates the 12V solenoid locker lock without requiring cellular internet.
-* 📍 **Scenario 3 - Laser ToF Emergency Braking:** Autonomous motor cut-off in $<5\text{ ms}$ upon obstacle detection within $30\text{ cm}$, preventing collision regardless of high-level SBC processing latency.
-
----
-
-## 3. System Architecture
+## 2. System Architecture
 
 ```
 +---------------------------------------------------------------------------------------+
@@ -53,7 +43,7 @@ This project develops an autonomous, weather-resistant **Outdoor Autonomous Deli
 |  +--------------------------------+               +--------------------------------+  |
 |  |     Android Mobile App         |               |     Web Fleet Dashboard        |  |
 |  |     (Kotlin / Java)            |               |     (React 18 + Vite + Leaflet)|  |
-|  |  - Order Dispatch & 128-bit Key|               |  - Real-Time AGV Telemetry Map |  |
+|  |  - Order Dispatch & Token String|               |  - Real-Time AGV Telemetry Map |  |
 |  |  - Live GPS Navigation Feed    |               |  - Centralized Fleet Dispatch  |  |
 |  |  - Proximity 2-Step BLE Unlock |               |  - System Health & Event Logs  |  |
 |  +----------------+---------------+               +----------------+---------------+  |
@@ -65,11 +55,11 @@ This project develops an autonomous, weather-resistant **Outdoor Autonomous Deli
 |  - Node.js (Express) Gateway Service (REST API bridge & Mosquitto MQTT Broker)        |
 +-------------------------------------------+-------------------------------------------+
                                             | MQTT over 4G-LTE / WiFi
-                                            | Topics: agv/orders, agv/telemetry
+                                            | Topics: agv/orders/pending, agv/commands, agv/location
 +-------------------------------------------v-------------------------------------------+
 |                        ROBOT HIGH-LEVEL CONTROLLER (RASPBERRY PI 4)                   |
 |  +---------------------------------------------------------------------------------+  |
-|  | [Navigation Core] Pure Pursuit Path Tracking & Spline Waypoint Interpolation   |  |
+|  | [Navigation Core] Pure Pursuit Path Tracking & Linear/Moving-Average Smoothing   |  |
 |  | [Sensor Fusion] Extended Kalman Filter fusing GPS + Wheel Odometry + Yaw IMU   |  |
 |  | [Lifecycle FSM] Order Lifecycle Manager (GOING_TO_A -> ARRIVED_A -> B...)       |  |
 |  | [Network Manager] Resilient MQTT Client with auto-reconnect & packet caching   |  |
@@ -82,10 +72,10 @@ This project develops an autonomous, weather-resistant **Outdoor Autonomous Deli
 |  +---------------------------------------------------------------------------------+  |
 |  |                     FREERTOS DUAL-CORE MULTITASKING SCHEDULER                   |  |
 |  |                                                                                 |  |
-|  |  [CORE 0: Asynchronous & Connectivity]  |  [CORE 1: Hard Real-Time 200Hz]       |  |
+|  |  [CORE 0: Asynchronous & Connectivity]  |  [CORE 1: Control task, nominal 20 ms]       |  |
 |  |  - UART Packet Stream Parser from Pi 4  |  - Dual Motor Closed-Loop PID Loop    |  |
-|  |  - BLE GATT Server (2-Step Offline Auth)|  - Hardware PCNT Encoder Quadrature   |  |
-|  |  - Solenoid Lock Relay & Limit Switch   |  - Madgwick AHRS Filter (IMU+Compass) |  |
+|  |  - BLE GATT Server (2-Step Offline Auth)|  - Single-channel PCNT pulse counting   |  |
+|  |  - Servo Door & Limit Switch   |  - IMU/Compass: not integrated |  |
 |  |                                         |  - VL53L0X Laser ToF Scan (<30cm Stop)|  |
 |  |                                         |                                       |  |
 |  |  <====== Synchronized via FreeRTOS Mutex (Thread-Safe Shared Telemetry) ======>  |  |
@@ -95,7 +85,7 @@ This project develops an autonomous, weather-resistant **Outdoor Autonomous Deli
 
 ---
 
-## 4. Hardware Architecture & Electrical Diagram
+## 3. Hardware Architecture & Electrical Diagram
 
 The electrical power distribution tree isolates high-current actuator transients from delicate computation processors:
 
@@ -107,7 +97,7 @@ The electrical power distribution tree isolates high-current actuator transients
                       v                                       v
          +--------------------------+            +--------------------------+
          | HIGH-POWER MOTOR DRIVER  |            | DC-DC BUCK 5V / 4A       |
-         | (BTS7960 / MDD10A Dual)  |            | (Raspberry Pi Power Rail)|
+         | (L298N dual motor driver (code))  |            | (Raspberry Pi Power Rail)|
          +-------------+------------+            +------------+-------------+
                        |                                      | (5V 4A)
          +-------------+-------------+                        v
@@ -117,7 +107,7 @@ The electrical power distribution tree isolates high-current actuator transients
     [ + Optical Enc ]           [ + Optical Enc ]             |-- (USB-UART CP2102) ----+
          |                           |                                                  |
          +-------------+-------------+                                                  |
-                       | (Quadrature Channel A/B Pulses)                                |
+                       | (One rising-edge pulse input per wheel)                                |
                        v                                                                |
          +--------------------------------------------------------------------+         |
          | DC-DC BUCK 5V/3.3V (Dedicated Embedded Microcontroller Rail)       |         |
@@ -127,71 +117,57 @@ The electrical power distribution tree isolates high-current actuator transients
          +--------------------------------------------------------------------+         |
          |                 ESP32 DUAL-CORE RTOS CONTROLLER                    |<--------+
          |                                                                    |
-         |--- (Hardware PCNT Unit 0/1) <--- [ Dual Wheel Quadrature Encoders ]|
+         |--- (Hardware PCNT Unit 0/1) <--- [ Single-channel wheel pulse inputs ]|
          |--- (I2C Fast Mode 400kHz) -----> [ IMU MPU6050 + Compass QMC5883L ]|
          |--- (I2C Fast Mode 400kHz) -----> [ VL53L0X Laser ToF Rangefinder ] |
-         |--- (GPIO Output 20kHz PWM) ----> [ BTS7960 Motor Driver Logic ]    |
-         |--- (GPIO Out + 12V Relay) -----> [ Cargo Compartment Solenoid Lock]|
+         |--- (GPIO Output 5kHz PWM) ----> [ L298N Motor Driver Logic ]    |
+         |--- (GPIO23 servo output) -----> [ Cargo compartment servo]|
          |--- (GPIO In Pullup) -----------> [ Limit Switch (Door Interlock) ] |
          |--- (2.4GHz RF Antenna) --------> [ BLE 4.2 GATT Proximity Link ]   |
          +--------------------------------------------------------------------+
 ```
 
-### Electrical Design Features:
-1. **Optically Isolated Motor H-Bridges:** High-current BTS7960 bridges (rated up to 43A) feature built-in optocouplers on all logic input pins, shielding the ESP32 GPIOs from inductive motor back-EMF transients.
-2. **Flyback Diode Suppression:** The 12V cargo compartment solenoid lock is clamped with a reverse-biased 1N4007 flyback diode across the inductive coil, dissipating high-voltage inductive discharge when the relay de-energizes.
+### Electrical verification required
+The active firmware configures L298N PWM and a servo, not BTS7960 or a solenoid relay. Physical power rails, isolation, protection, voltage dividers and wiring have not been verified from code.
 
 ---
 
-## 5. Engineering Design Decisions & Trade-offs
+## 4. Engineering Design Decisions & Trade-offs
 
-### Decision 1: Split Architecture (Raspberry Pi 4 + ESP32) vs. Single SBC Control
-* **Problem:** Raspberry Pi 4 runs a standard multi-tasking Linux OS with non-real-time kernel scheduling. Interrupt latency jitter ranges from 5ms to 50ms during heavy background I/O or cellular transmission. Generating high-frequency PWM or sampling quadrature encoder interrupts directly from the Pi's GPIO pins leads to severe velocity jitter, pulse loss, and navigation drift.
-* **Trade-off Decision:**
-  * **Raspberry Pi 4 (High-Level Intelligence):** Runs Pure Pursuit path-following algorithms, cubic spline trajectory generation, GPS coordinate transformations, and cloud networking.
-  * **ESP32 (Hard Real-Time Executive):** Runs a jitter-free **5ms (200Hz)** PID velocity loop, hardware-level pulse counting (`PCNT`), and autonomous sub-millisecond obstacle emergency braking via laser ToF.
+### Decision 1: Raspberry Pi navigation + ESP32 motion
+Pi runs Python mission FSM, NMEA GPS, OSRM route retrieval, linear interpolation/moving average, Pure Pursuit and an EKF implementation. ESP32 handles PCNT, motor PWM, ToF and BLE. Linux and blocking sensor calls mean this architecture alone does not establish hard real-time behavior or jitter limits.
 
-### Decision 2: FreeRTOS SMP Task Pinning (`Core 0` vs. `Core 1`)
-* **Problem:** BLE cryptographic handshakes and serial UART string parsing exhibit non-deterministic runtimes. If scheduled on the same CPU core as the motor velocity PID controller, task preemption can disrupt the control period $\Delta t$.
-* **Trade-off Decision:** Pinned multi-core architecture via `xTaskCreatePinnedToCore`:
-  * **Core 0 (Asynchronous Tasks):** `Task_Comm` (UART stream parser) and `Task_BLE` (GATT security server).
-  * **Core 1 (Deterministic Hard Real-Time):** `Task_PID` running at 200Hz with `vTaskDelayUntil()`, hardware encoder reading, and laser safety monitoring.
-  * Thread-safe inter-core data sharing is guarded by **FreeRTOS Mutexes with Priority Inheritance**, preventing priority inversion.
+### Decision 2: Two pinned FreeRTOS tasks
+`TaskComms`: core 0, priority 1, 10 ms relative delay, telemetry scheduled at 50 ms. `TaskControl`: core 1, priority 2, `vTaskDelayUntil` with nominal 20 ms, including blocking ToF, encoder/PID, servo, battery and buzzer. BLE callbacks run in library-managed tasks. Mutexes protect shared state; priority inheritance mitigates but does not eliminate delays from long critical sections.
 
-### Decision 3: Madgwick AHRS Sensor Fusion vs. Standard Complementary Filter
-* **Problem:** Standard 6-DoF complementary filters drift severely over extended travel distances due to uncompensated gyroscope integration errors and transient accelerations during acceleration/braking.
-* **Trade-off Decision:** Implemented the **Madgwick AHRS Algorithm**:
-  * Represents 3D orientation in 4-dimensional quaternions, eliminating Gimbal Lock.
-  * Dynamically computes gradient descent optimization against Earth’s gravitational vector (MPU6050) and geomagnetic field (QMC5883L), bounding heading error below **$<1.5^\circ$**.
+### Decision 3: Sensor fusion is incomplete
+Madgwick is instantiated but no IMU/compass reads or filter updates exist. IMU/yaw telemetry remains initialized to zero. The Pi EKF has GPS/odometry prediction and correction code but lacks real gyro input from this firmware. No heading accuracy is established.
 
-### Decision 4: Anti-Windup Clamping on Closed-Loop PID Velocity Control
-* **Problem:** When climbing curbs or navigating inclines under payload, sustained tracking error causes the integral accumulator ($I$) to saturate. Once flat ground is reached, the surplus accumulated value causes massive overshoot and violent mechanical jerk.
-* **Trade-off Decision:** Incorporated an **Anti-Windup Clamping Integrator**:
-  $$I_{\text{term}}[k] = \text{constrain}(I_{\text{term}}[k-1] + K_i \cdot e[k] \cdot \Delta t, -I_{\text{max}}, I_{\text{max}})$$
-  Integration is clamped when the PWM output saturates (255) and the error shares the same sign as the output, ensuring smooth motor actuation.
+### Decision 4: Discrete PID with integral clamping
+`ClosedLoopPid::compute` uses `I = clamp(I + error, -200, 200)` and `D = error - previousError`; gains absorb the nominal sample interval. It does not implement saturation-aware conditional integration. Motor output is clamped to magnitude 0..255, then signed using the target. Both target and measured pulse rate use ticks/50 ms; delta is normalized by actual elapsed milliseconds. PCNT measures magnitude only; odometry direction is inferred from the preceding output and cannot detect external reverse motion.
 
-### Decision 5: Two-Step Proximity Offline BLE Authentication vs. Cloud-Only Unlock
-* **Problem:** Cloud-only locker unlock mechanisms fail whenever the robot stops in cellular dead zones (e.g., covered archways, building basements). Conversely, unauthenticated local buttons permit cargo theft.
-* **Trade-off Decision:** Engineered a **2-Step Offline Token Handshake over BLE GATT**:
-  * Pi 4 pre-caches a random **128-bit cryptographic token** into ESP32 RAM at dispatch.
-  * At delivery, the customer connects via BLE within 3 meters without needing active cellular internet.
-  * Step 1 validates the token; Step 2 actuates the solenoid lock only when the user explicitly triggers "Open Locker" on the mobile app.
+### Decision 5: BLE token comparison
+The ESP32 compares a supplied string with a cached token under a mutex. Each open action checks the token independently; verification does not create an authenticated session. BLE OFF clears the token even for already connected clients. The firmware does not establish token entropy, cryptographic authentication or a 3 m proximity boundary. GPIO23 drives a servo, not a solenoid relay.
 
 ---
 
-## 6. Embedded Software Engineering
+## 5. Embedded Software Engineering
 
-### 6.1. FreeRTOS Dual-Core Multitasking Architecture
-* **Task_PID (Core 1, Priority 5):** Hard real-time 5ms loop (200Hz). Samples hardware `PCNT` registers, computes Anti-Windup PID corrections, and drives 20kHz `LEDC` PWM channels.
-* **Task_ToF (Core 1, Priority 4):** Evaluates VL53L0X status register (`RangeStatus == 0`). Triggers immediate motor cutoff if distance $<30\text{ cm}$.
-* **Task_Comm (Core 0, Priority 3):** Deserializes incoming `SPEED:vL:vR` frames from the Pi and formats outgoing telemetry frames (`ODO:tL:tR`).
-* **Task_BLE (Core 0, Priority 2):** Manages BLE GATT Server advertising and JSON authentication payload parsing.
+* Nominal control period: 20 ms (50 Hz); ranging calls can overrun it. No measured jitter-free behavior or braking latency.
+* UART command: `payload*XX\n`, exact two hex CRC-8/0x07/init0. Oversized lines are discarded until newline. SPEED requires exactly two finite values in [-25,25] ticks/50 ms.
+* A valid SPEED refreshes a 1000 ms command timeout. The active Pi loop sends approximately every 100 ms; ten missed updates is an engineering margin, not a measured stopping bound. Non-motion commands and invalid frames do not refresh it. Timeout clears targets and resets PID at the next control iteration.
+* Invalid ToF status/failed startup holds both motors; a valid range below 300 mm also stops both, including turns/reverse. No 500 ms release hysteresis or soft-start ramp is implemented.
+* PCNT uses GPIO16/17, rising-edge only, no direction-control input. Separate delta/odometry baselines survive software clear. Counter saturation or pulses during pause/clear still need hardware validation.
+* Dynamic allocation exists: BLE callbacks/descriptors with `new`, `String`, ArduinoJson, tasks and mutexes. Static objects do not imply zero heap.
+* UART TX lines share a mutex so event and telemetry output cannot interleave. Door/token/buzzer and speed/telemetry use a data mutex.
 
 ---
 
-## 7. Finite State Machines
+## 6. Finite State Machines
 
-### 7.1. End-to-End Order Lifecycle State Machine (Raspberry Pi 4)
+The diagrams describe conceptual workflows. Actual Python states and servo events should be checked against `robot/pi_master/main.py` and firmware `DoorState`; there is no measured proximity boundary, solenoid driver or active holding brake.
+
+### 6.1. End-to-End Order Lifecycle State Machine (Raspberry Pi 4)
 
 ```mermaid
 stateDiagram-v2
@@ -210,7 +186,7 @@ stateDiagram-v2
     
     state WAITING_SENDER {
         [*] --> BLE_ADVERTISING_A
-        BLE_ADVERTISING_A --> VERIFIED_TOKEN_A : 128-Bit Token Match
+        BLE_ADVERTISING_A --> VERIFIED_TOKEN_A : Token string match
         VERIFIED_TOKEN_A --> COMPARTMENT_OPEN_A : User Requests Locker Open
         COMPARTMENT_OPEN_A --> CARGO_LOADED : Package Loaded & Door Shut
     }
@@ -241,7 +217,7 @@ stateDiagram-v2
     RETURNING_TO_SENDER --> WAITING_SENDER : Returned Parcel to Sender
 ```
 
-### 7.2. Two-Step Proximity BLE Security Handshake
+### 6.2. Two-Step Proximity BLE Security Handshake
 
 ```mermaid
 sequenceDiagram
@@ -249,7 +225,7 @@ sequenceDiagram
     actor User as Customer (Mobile App)
     participant BLE as ESP32 (GATT Server)
     participant Pi as Raspberry Pi 4
-    participant Lock as Solenoid Latch
+    participant Lock as Servo
 
     Note over User,Pi: AGV stops at waypoint & initiates BLE broadcast
     Pi->>BLE: Serial Frame: BLE:ON:<Token_128bit>
@@ -264,58 +240,37 @@ sequenceDiagram
     end
     
     User->>BLE: Step 2: User taps button -> {"action":"open_slot", "token":"..."}
-    BLE->>Lock: Energize 12V Relay (Door opens)
+    BLE->>Lock: Set servo target to 30 degrees
     BLE->>Pi: Serial Frame: DOOR:OPENED
     
     Note over User,Lock: Package loaded/unloaded; door is closed
     Lock-->>BLE: Limit Switch contacts close
-    BLE->>Lock: De-energize solenoid (Securely locked)
-    BLE->>Pi: Serial Frame: DOOR:LOCKED
+    BLE->>Lock: Set servo target to 100 degrees
+    BLE->>Pi: Serial Frame: DOOR:CLOSED
 ```
 
-### 7.3. Laser Proximity Emergency Safety State Machine
-
-```mermaid
-stateDiagram-v2
-    [*] --> NORMAL_CRUISE : Tracking velocity commands from Pi 4
-    
-    NORMAL_CRUISE --> EMERGENCY_BRAKE : Laser ToF < 30cm
-    
-    state EMERGENCY_BRAKE {
-        [*] --> CUT_PWM : Immediately zero motor PWM in < 5ms
-        CUT_PWM --> SEND_UART_WARN : Transmit UART: WARN:OBSTACLE
-        SEND_UART_WARN --> HOLD_POSITION : Maintain active holding brake
-    }
-    
-    EMERGENCY_BRAKE --> AUTO_RESUME : Laser ToF >= 50cm for 500ms
-    
-    state AUTO_RESUME {
-        [*] --> SEND_UART_CLEAR : Transmit UART: WARN:CLEAR
-        SEND_UART_CLEAR --> SOFT_START : Smooth acceleration ramp
-    }
-    
-    AUTO_RESUME --> NORMAL_CRUISE : Resume trajectory tracking
-```
+### 6.3. Implemented safety behavior
+`TaskControl` stops both outputs and resets both PID states when ToF is invalid or below 300 mm, target is zero, or valid SPEED has expired. WARN:OBSTACLE/CLEAR reports sensor hold transitions. A valid clear sensor can release the hold while the SPEED timeout remains enforced. There is no active brake, 500 mm / 500 ms release rule or acceleration ramp.
 
 ---
 
-## 8. End-to-End Operational Workflow
+## 7. End-to-End Operational Workflow
 
 ### Stage 1: Order Initiation & Dispatch
-1. Sender creates a shipment on the Android app, designating receiver dropoff coordinates. The cloud service issues a random 128-bit cryptographic key and syncs to Firebase.
+1. Sender creates a shipment on the Android app, designating receiver dropoff coordinates. The cloud service issues a random token string (generation not audited here) and syncs to Firebase.
 2. Raspberry Pi 4 receives dispatch over MQTT, caching the authentication token locally.
-3. The **Cubic Spline** algorithm smooths waypoints, and the **Pure Pursuit** controller calculates differential wheel velocity setpoints (`SPEED:vL:vR`).
-4. ESP32 runs the 200Hz closed-loop Anti-Windup PID controller to track target velocity.
+3. The **linear interpolation + moving average** algorithm smooths waypoints, and the **Pure Pursuit** controller calculates differential wheel velocity setpoints (`SPEED:vL:vR`).
+4. ESP32 runs the 50Hz nominal closed-loop Anti-Windup PID controller to track target velocity.
 
 ### Stage 2: Parcel Loading at Sender Location
 1. Upon arriving at Point A, Pi 4 stops the vehicle and activates BLE advertising.
-2. Sender approaches within 3m; the Android app performs the 2-step BLE authentication handshake.
-3. Sender presses "Open Locker"; the 12V solenoid energizes. The parcel is placed inside, and the door is latched. The limit switch confirms closed status to ESP32 and Pi 4.
+2. Sender approaches over BLE; the Android app performs the 2-step BLE authentication handshake.
+3. Sender presses "Open Locker"; the servo target changes to 30 degrees. A change in package limit-switch state starts an 8 s closing delay; servo target becomes 100 degrees. DOOR:CLOSED is emitted when the commanded servo angle reaches 100, not from a latch-position sensor.
 
 ### Stage 3: Autonomous Transit to Destination
 1. BLE advertising is deactivated for security and power conservation.
-2. AGV tracks outdoor waypoints via Pure Pursuit, fusing GNSS, magnetometer, and encoder data via an Extended Kalman Filter.
-3. The forward-facing VL53L0X laser sensor scans at 200Hz. Any obstacle within $<30\text{ cm}$ triggers immediate, autonomous motor braking.
+2. AGV tracks outdoor waypoints via Pure Pursuit, running GPS/encoder EKF code; real IMU/magnetometer input is not yet integrated.
+3. VL53L0X ranging is called in the nominal 20 ms control task; actual frequency must be measured. A valid range below 300 mm or invalid measurement causes output cutoff at the control decision; reaction latency and mechanical stopping distance remain unmeasured.
 
 ### Stage 4: Parcel Handover to Receiver
 1. At Point B, Pi 4 halts the vehicle and reactivates BLE broadcast.
@@ -328,32 +283,32 @@ stateDiagram-v2
 
 ---
 
-## 9. Hardware Wiring & Pin Mapping
+## 8. Hardware Wiring & Pin Mapping
 
 ### ESP32 (Low-Level Motion & Security Controller)
-| Peripheral Device | ESP32 Pin | Hardware Function | Technical Specification |
-| :--- | :---: | :--- | :--- |
-| **Motor L - PWM** | `GPIO 25` | LEDC Channel 0 (PWM) | 20kHz, 8-bit resolution |
-| **Motor L - DIR** | `GPIO 26, GPIO 27` | GPIO Output Push-Pull | Left motor direction logic |
-| **Motor R - PWM** | `GPIO 14` | LEDC Channel 1 (PWM) | 20kHz, 8-bit resolution |
-| **Motor R - DIR** | `GPIO 12, GPIO 13` | GPIO Output Push-Pull | Right motor direction logic |
-| **Encoder Left (A, B)**| `GPIO 34, GPIO 35` | Hardware PCNT Unit 0 | 4x Quadrature pulse counting |
-| **Encoder Right (A, B)**| `GPIO 36, GPIO 39` | Hardware PCNT Unit 1 | 4x Quadrature pulse counting |
-| **I2C Bus (IMU / ToF)**| `GPIO 21 (SDA), GPIO 22 (SCL)`| Hardware I2C (400kHz Fast Mode) | MPU6050, QMC5883L, VL53L0X |
-| **Locker Relay** | `GPIO 32` | GPIO Output | 12V Solenoid driver circuit |
-| **Door Limit Switch** | `GPIO 33` | GPIO Input Pullup | Contact closure detection |
-| **Serial to Pi 4** | `GPIO 16 (RX2), GPIO 17 (TX2)`| Hardware UART2 (115200 bps) | Bidirectional framing link |
+These are configured pins; verify the physical board before flashing.
+
+| Peripheral | Configured pin/function |
+|---|---|
+| Motor L PWM / DIR | GPIO14, LEDC2; GPIO32/33; 5 kHz, 8 bit |
+| Motor R PWM / DIR | GPIO27, LEDC3; GPIO25/26; 5 kHz, 8 bit |
+| Encoder L / R | GPIO16 / GPIO17, PCNT0/1 rising edge, one channel each |
+| I2C | GPIO21 SDA / GPIO22 SCL; Wire.begin without explicit 400 kHz; ToF integrated, IMU/compass not integrated |
+| Servo | GPIO23, 50 Hz; open30 / close100 degrees |
+| Limit switch | GPIO5, INPUT_PULLUP; package-state change triggers delayed closing |
+| Buzzer / battery ADC | GPIO19 / GPIO36 |
+| Pi link | `Serial` UART0 through board USB-UART, 115200; GPIO16/17 are encoders, not Serial2 |
 
 ### Raspberry Pi 4 (High-Level Navigator)
 | Interface Port | Peripheral Device | Protocol | Technical Specification |
 | :--- | :--- | :--- | :--- |
 | **USB Port 1** | ESP32 Controller | USB-to-UART CP2102 | Serial telemetry & velocity commands |
-| **USB Port 2** | GPS U-blox Neo-M8N | NMEA Serial (9600 bps) | Multi-GNSS satellite positioning |
+| **USB Port 2** | GPS U-blox Neo-M8N | NMEA Serial (115200 default in Python; verify module setting) | Multi-GNSS satellite positioning |
 | **Network** | 4G-LTE Modem / WiFi | TCP/IP | MQTT & Firebase Realtime Database |
 
 ---
 
-## 10. Build, Flash & Deployment Guide
+## 9. Build, Flash & Deployment Guide
 
 ### Prerequisites:
 * [VS Code](https://code.visualstudio.com/) with the [PlatformIO IDE](https://platformio.org/) extension.
@@ -361,14 +316,14 @@ stateDiagram-v2
 * [Node.js](https://nodejs.org/) v18+ for the Web Fleet Dashboard.
 * [Android Studio](https://developer.android.com/studio) for the mobile client.
 
-### 10.1. Flashing ESP32 Firmware
+### 9.1. Flashing ESP32 Firmware
 ```bash
 cd robot/arduino_slave
 # Compile and flash firmware via USB-UART
 pio run --target upload
 ```
 
-### 10.2. Raspberry Pi Navigator Setup
+### 9.2. Raspberry Pi Navigator Setup
 ```bash
 cd robot/pi_master
 # Create and activate virtual environment
@@ -380,7 +335,7 @@ pip install -r requirements.txt
 python3 main.py
 ```
 
-### 10.3. Launching Web Fleet Dashboard
+### 9.3. Launching Web Fleet Dashboard
 ```bash
 # Automated launch script (Windows):
 ./web/start_web.bat
@@ -395,14 +350,14 @@ cd web/frontend && npm install && npm run dev
 
 ---
 
-## 11. Source Code Structure & Git Conventions
+## 10. Source Code Structure & Git Conventions
 
 ### Repository Layout
 ```
 Autonomous-Delivery-Robot/
 ├── AutoDeliveryApp/           # Native Android App (Kotlin) - Booking, GPS feed, BLE unlock
 ├── robot/
-│   ├── arduino_slave/         # ESP32 Firmware (FreeRTOS, 200Hz PID, Madgwick, BLE Server)
+│   ├── arduino_slave/         # ESP32 Firmware (FreeRTOS, nominal 50Hz PID, PCNT, BLE; IMU pending)
 │   └── pi_master/             # Python Navigation Core (Pure Pursuit, GPS, Kalman, MQTT)
 ├── web/                       # Web Fleet Management Dashboard (React 18 + Express + Leaflet)
 │   ├── backend/               # Gateway Service, MQTT Broker Client, REST APIs

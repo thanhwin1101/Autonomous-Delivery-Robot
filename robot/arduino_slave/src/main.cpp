@@ -1,9 +1,9 @@
 // ====================================================================
 //  Delivery Robot – ESP32 HARDWARE SLAVE (Embedded C++ OOP & FreeRTOS)
 //  ------------------------------------------------------------------
-//  - Hardware PCNT: Đếm xung Encoder bằng phần cứng SoC ESP32 (0% CPU)
+//  - Hardware PCNT: Single-channel rising-edge counting; software reads counters.
 //  - Dual-Core FreeRTOS: Core 0 (Comms + BLE) | Core 1 (PID Motor + ToF Safety)
-//  - Zero Heap Allocation: Loại bỏ rủi ro tràn RAM, tĩnh hóa bộ nhớ
+//  - Static subsystem objects; BLE, JSON, tasks and mutex still allocate heap.
 // ====================================================================
 #include <Arduino.h>
 #include <Wire.h>
@@ -14,6 +14,8 @@
 #include <ESP32Servo.h>
 #include <MadgwickAHRS.h>
 #include <ArduinoJson.h>
+#include <ctype.h>
+#include <math.h>
 #include "Adafruit_VL53L0X.h"
 
 #include "pcnt_encoder.h"
@@ -60,6 +62,14 @@ static Servo            g_doorServo;
 // 3. THREAD-SAFE TELEMETRY & CONCURRENCY
 // ====================================================================
 static SemaphoreHandle_t g_dataMutex = nullptr;
+static SemaphoreHandle_t g_uartMutex = nullptr;
+
+static void sendUartLine(const char* line) {
+    if (xSemaphoreTake(g_uartMutex, portMAX_DELAY)) {
+        Serial.println(line);
+        xSemaphoreGive(g_uartMutex);
+    }
+}
 
 struct TelemetryData {
     int32_t  encLeftCount;
@@ -78,6 +88,11 @@ static TelemetryData g_telemetry = {0, 0, 0.0f, 0, 0, 0, 0, 0, 0, 0.0f, 9999, 10
 // Điều khiển từ Pi
 static float g_targetSpeedL = 0.0f;
 static float g_targetSpeedR = 0.0f;
+// Pi navigation sends at ~100 ms; 1000 ms allows ten missed active updates.
+static constexpr uint32_t SPEED_TIMEOUT_MS = 1000;
+static constexpr float MAX_TARGET_SPEED = 25.0f; // ticks / 50 ms, gps_nav.py limit
+static uint32_t g_lastSpeedMs = 0;
+static bool g_haveSpeed = false;
 static bool  g_sysReady = false;
 
 // Trạng thái cửa
@@ -92,7 +107,10 @@ static bool      g_initialBoxState = false;
 static int  g_buzzerBeeps = 0;
 
 static void triggerBuzzer(int beeps) {
-    g_buzzerBeeps = beeps * 2;
+    if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+        g_buzzerBeeps = beeps * 2;
+        xSemaphoreGive(g_dataMutex);
+    }
 }
 
 // ====================================================================
@@ -127,18 +145,24 @@ class RxCallbacks : public BLECharacteristicCallbacks {
         const char* action = doc["action"] | "";
         const char* token  = doc["token"] | "";
 
-        if (strlen(g_localToken) > 0 && strcmp(token, g_localToken) == 0) {
+        bool tokenValid = false;
+        bool opened = false;
+        if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+            tokenValid = g_localToken[0] && strcmp(token, g_localToken) == 0;
+            if (tokenValid && (strcmp(action, "open_slot") == 0 || strcmp(action, "confirm_loaded") == 0)) {
+                g_targetServoAngle = 30;
+                g_doorState = DoorState::OPEN;
+                g_initialBoxState = (digitalRead(LIMIT_SWITCH_PIN) == LOW);
+                opened = true;
+            }
+            xSemaphoreGive(g_dataMutex);
+        }
+        if (tokenValid) {
             if (strcmp(action, "verify_token") == 0) {
                 pCharacteristic->setValue("{\"ok\":true,\"action\":\"verify_token\"}");
                 pCharacteristic->notify();
-            } else if (strcmp(action, "open_slot") == 0 || strcmp(action, "confirm_loaded") == 0) {
-                if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
-                    g_targetServoAngle = 30; // Mở nắp
-                    g_doorState = DoorState::OPEN;
-                    g_initialBoxState = (digitalRead(LIMIT_SWITCH_PIN) == LOW);
-                    xSemaphoreGive(g_dataMutex);
-                }
-                Serial.println("DOOR:OPENED");
+            } else if (opened) {
+                sendUartLine("DOOR:OPENED");
                 triggerBuzzer(3);
                 pCharacteristic->setValue("{\"ok\":true,\"action\":\"opened\"}");
                 pCharacteristic->notify();
@@ -170,26 +194,41 @@ static void handlePiCommand(const char* cmd) {
 
     if (strncmp(cmd, "SPEED:", 6) == 0) {
         float l = 0, r = 0;
-        if (sscanf(cmd + 6, "%f:%f", &l, &r) == 2) {
+        int consumed = 0;
+        if (sscanf(cmd + 6, "%f:%f%n", &l, &r, &consumed) == 2 &&
+            cmd[6 + consumed] == '\0' && isfinite(l) && isfinite(r) &&
+            fabsf(l) <= MAX_TARGET_SPEED && fabsf(r) <= MAX_TARGET_SPEED) {
             if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
                 g_targetSpeedL = l;
                 g_targetSpeedR = r;
+                g_lastSpeedMs = millis();
+                g_haveSpeed = true;
                 xSemaphoreGive(g_dataMutex);
             }
         }
     } else if (strncmp(cmd, "BLE:ON:", 7) == 0) {
-        strncpy(g_localToken, cmd + 7, sizeof(g_localToken) - 1);
+        size_t len = strlen(cmd + 7);
+        if (!len || len >= sizeof(g_localToken)) return;
+        if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+            memcpy(g_localToken, cmd + 7, len + 1);
+            xSemaphoreGive(g_dataMutex);
+        }
         BLEDevice::startAdvertising();
     } else if (strcmp(cmd, "BLE:OFF") == 0) {
+        if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+            g_localToken[0] = '\0';
+            xSemaphoreGive(g_dataMutex);
+        }
         BLEDevice::getAdvertising()->stop();
     } else if (strncmp(cmd, "BUZZER:", 7) == 0) {
-        int beeps = atoi(cmd + 7);
-        triggerBuzzer(beeps);
+        char* end = nullptr;
+        long beeps = strtol(cmd + 7, &end, 10);
+        if (end != cmd + 7 && *end == '\0' && beeps >= 0 && beeps <= 20) triggerBuzzer((int)beeps);
     } else if (strcmp(cmd, "BOX:CHECK") == 0) {
         bool empty = (digitalRead(LIMIT_SWITCH_PIN) == HIGH);
-        Serial.println(empty ? "BOX:EMPTY" : "BOX:FULL");
+        sendUartLine(empty ? "BOX:EMPTY" : "BOX:FULL");
     } else if (strcmp(cmd, "SYS:CHECK") == 0) {
-        Serial.println(g_sysReady ? "SYS:READY" : "SYS:ERROR");
+        sendUartLine(g_sysReady ? "SYS:READY" : "SYS:ERROR:TOF");
     }
 }
 
@@ -201,6 +240,7 @@ static void handlePiCommand(const char* cmd) {
 static void TaskComms(void* pvParameters) {
     char rxBuf[128];
     size_t rxLen = 0;
+    bool discardLine = false;
     uint32_t lastTelemetryMs = 0;
 
     for (;;) {
@@ -208,22 +248,23 @@ static void TaskComms(void* pvParameters) {
         while (Serial.available() > 0) {
             char c = (char)Serial.read();
             if (c == '\n') {
+                if (discardLine) { discardLine = false; rxLen = 0; continue; }
                 rxBuf[rxLen] = '\0';
                 // Kiểm tra CRC nếu có ký tự '*'
                 char* star = strrchr(rxBuf, '*');
-                if (star) {
+                if (star && strlen(star + 1) == 2 &&
+                    isxdigit((unsigned char)star[1]) && isxdigit((unsigned char)star[2])) {
                     *star = '\0';
                     uint8_t rxCrc = (uint8_t)strtol(star + 1, nullptr, 16);
                     uint8_t calcCrc = crc8_calc(rxBuf, strlen(rxBuf));
                     if (rxCrc == calcCrc) {
                         handlePiCommand(rxBuf);
                     }
-                } else {
-                    handlePiCommand(rxBuf);
                 }
                 rxLen = 0;
-            } else if (c != '\r' && rxLen < sizeof(rxBuf) - 1) {
-                rxBuf[rxLen++] = c;
+            } else if (c != '\r' && !discardLine) {
+                if (rxLen < sizeof(rxBuf) - 1 && c != '\0') rxBuf[rxLen++] = c;
+                else { discardLine = true; rxLen = 0; }
             }
         }
 
@@ -241,67 +282,114 @@ static void TaskComms(void* pvParameters) {
             char txBuf[160];
             snprintf(txBuf, sizeof(txBuf),
                      "ODO:%ld:%ld:%.2f:%d:%d:%d:%d:%d:%d:%.2f:%.1f:%d",
-                     localTel.encLeftCount, localTel.encRightCount, localTel.yaw,
+                     (long)localTel.encLeftCount, (long)localTel.encRightCount, localTel.yaw,
                      localTel.ax, localTel.ay, localTel.az,
                      localTel.gx, localTel.gy, localTel.gz,
                      localTel.gz_deg, localTel.batteryPercentage, localTel.tofDistanceMm);
 
             uint8_t crc = crc8_calc(txBuf, strlen(txBuf));
-            Serial.print(txBuf);
-            Serial.print("*");
-            if (crc < 0x10) Serial.print("0");
-            Serial.println(crc, HEX);
+            char frame[sizeof(txBuf) + 4];
+            snprintf(frame, sizeof(frame), "%s*%02X", txBuf, crc);
+            sendUartLine(frame);
         }
 
         vTaskDelay(pdMS_TO_TICKS(10));
     }
 }
 
-// TASK CONTROL (Core 1): Điều khiển Động cơ PID, Cảm biến ToF & IMU (50Hz)
+// TASK CONTROL (Core 1): Điều khiển Động cơ PID, Cảm biến ToF & Madgwick AHRS (200Hz)
 static void TaskControl(void* pvParameters) {
     TickType_t xLastWakeTime = xTaskGetTickCount();
-    const TickType_t xFrequency = pdMS_TO_TICKS(20); // Chu kỳ 20ms (50Hz)
+    const TickType_t xFrequency = pdMS_TO_TICKS(5); // Chu kỳ 5ms (200Hz)
 
     uint32_t lastBatteryMs = 0;
     uint32_t lastServoStepMs = 0;
+    uint32_t lastEncoderMs = millis();
+    bool forwardL = true, forwardR = true;
+    bool lastObs = false;
 
     for (;;) {
         vTaskDelayUntil(&xLastWakeTime, xFrequency);
 
         uint32_t now = millis();
 
-        // 1. Đọc Cảm Biến ToF VL53L0X
-        VL53L0X_RangingMeasurementData_t measure;
-        g_tof.rangingTest(&measure, false);
-        uint16_t dist = 9999;
-        bool obs = false;
+        // 1. Đọc IMU MPU6050 & Cập nhật Madgwick AHRS (200Hz)
+        int16_t rawAx = 0, rawAy = 0, rawAz = 0;
+        int16_t rawGx = 0, rawGy = 0, rawGz = 0;
+        float yaw = 0.0f, gz_deg = 0.0f;
 
-        if (measure.RangeStatus != 4 && measure.RangeMilliMeter > 20 && measure.RangeMilliMeter < 8000) {
-            dist = measure.RangeMilliMeter;
-            if (dist < 300) {
-                obs = true;
-            }
+#if !defined(TEST_HARNESS)
+        Wire.beginTransmission(MPU6050_ADDR);
+        Wire.write(0x3B);
+        if (Wire.endTransmission(false) == 0 && Wire.requestFrom((uint8_t)MPU6050_ADDR, (size_t)14, true) == 14) {
+            rawAx = (int16_t)((Wire.read() << 8) | Wire.read());
+            rawAy = (int16_t)((Wire.read() << 8) | Wire.read());
+            rawAz = (int16_t)((Wire.read() << 8) | Wire.read());
+            Wire.read(); Wire.read(); // Bỏ qua temp
+            rawGx = (int16_t)((Wire.read() << 8) | Wire.read());
+            rawGy = (int16_t)((Wire.read() << 8) | Wire.read());
+            rawGz = (int16_t)((Wire.read() << 8) | Wire.read());
+
+            float ax_g = (float)rawAx / 16384.0f;
+            float ay_g = (float)rawAy / 16384.0f;
+            float az_g = (float)rawAz / 16384.0f;
+            float gx_dps = (float)rawGx / 131.0f;
+            float gy_dps = (float)rawGy / 131.0f;
+            gz_deg = (float)rawGz / 131.0f;
+
+            g_imuFilter.updateIMU(gx_dps, gy_dps, gz_deg, ax_g, ay_g, az_g);
+            yaw = g_imuFilter.getYaw();
         }
+#endif
 
-        // 2. Đọc Encoder Phần Cứng (PCNT)
+        // 2. Đọc Cảm Biến ToF VL53L0X
+        VL53L0X_RangingMeasurementData_t measure = {};
+        measure.RangeStatus = 4;
+        bool rangeOk = g_sysReady && g_tof.rangingTest(&measure, false) == VL53L0X_ERROR_NONE;
+        uint16_t dist = 9999;
+        bool obs = true; // Missing/invalid range is not evidence of a clear path.
+
+        if (rangeOk && measure.RangeStatus == 0 && measure.RangeMilliMeter > 0 && measure.RangeMilliMeter < 8000) {
+            dist = measure.RangeMilliMeter;
+            obs = dist < 300;
+        }
+        now = millis(); // Includes time spent in the blocking ranging call.
+        uint32_t elapsedMs = now - lastEncoderMs;
+        lastEncoderMs = now;
+
+        // 3. Đọc Encoder Phần Cứng (PCNT)
         int32_t deltaL = g_encL.getDeltaAndReset();
         int32_t deltaR = g_encR.getDeltaAndReset();
-        int32_t totalL = g_encL.getPulseCount(true);
-        int32_t totalR = g_encR.getPulseCount(true);
+        // Single-channel PCNT cannot measure direction; infer the preceding motor output.
+        int32_t totalL = g_encL.getPulseCount(forwardL);
+        int32_t totalR = g_encR.getPulseCount(forwardR);
 
-        // 3. Tính Toán PID Vận Tốc
+        // 4. Tính Toán PID Vận Tốc (200Hz)
         float targetL = 0.0f, targetR = 0.0f;
         if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+            if (!g_haveSpeed || millis() - g_lastSpeedMs >= SPEED_TIMEOUT_MS) {
+                g_targetSpeedL = 0.0f;
+                g_targetSpeedR = 0.0f;
+                g_haveSpeed = false;
+            }
             targetL = g_targetSpeedL;
             targetR = g_targetSpeedR;
             g_telemetry.encLeftCount = totalL;
             g_telemetry.encRightCount = totalR;
+            g_telemetry.yaw = yaw;
+            g_telemetry.ax = rawAx;
+            g_telemetry.ay = rawAy;
+            g_telemetry.az = rawAz;
+            g_telemetry.gx = rawGx;
+            g_telemetry.gy = rawGy;
+            g_telemetry.gz = rawGz;
+            g_telemetry.gz_deg = gz_deg;
             g_telemetry.tofDistanceMm = dist;
             g_telemetry.obstacleDetected = obs;
             xSemaphoreGive(g_dataMutex);
         }
 
-        if (obs && (targetL > 0 || targetR > 0)) {
+        if (obs) {
             // Có vật cản -> Phanh khẩn cấp
             g_motors.stop();
             g_pidL.reset();
@@ -311,32 +399,47 @@ static void TaskControl(void* pvParameters) {
             g_pidL.reset();
             g_pidR.reset();
         } else {
-            float pwmL = g_pidL.compute(targetL, (float)deltaL);
-            float pwmR = g_pidR.compute(targetR, (float)deltaR);
+            // Normalize measured ticks to the unchanged wire unit ticks/50 ms.
+            float scale = elapsedMs ? 50.0f / elapsedMs : 0.0f;
+            float pwmL = constrain(g_pidL.compute(fabsf(targetL), deltaL * scale), 0.0f, 255.0f);
+            float pwmR = constrain(g_pidR.compute(fabsf(targetR), deltaR * scale), 0.0f, 255.0f);
+            if (targetL == 0) { pwmL = 0; g_pidL.reset(); }
+            if (targetR == 0) { pwmR = 0; g_pidR.reset(); }
+            if (targetL < 0) pwmL = -pwmL;
+            if (targetR < 0) pwmR = -pwmR;
+            if (pwmL != 0) forwardL = pwmL > 0;
+            if (pwmR != 0) forwardR = pwmR > 0;
             g_motors.setSpeed((int16_t)pwmL, (int16_t)pwmR);
         }
 
         // 4. Quản Lý Nắp Tủ Giao Hàng & Servo
-        if (g_currentServoAngle != g_targetServoAngle && (now - lastServoStepMs >= 10)) {
-            lastServoStepMs = now;
-            if (g_currentServoAngle < g_targetServoAngle) g_currentServoAngle += 2;
-            else                                         g_currentServoAngle -= 2;
-            g_doorServo.write(g_currentServoAngle);
-        }
+        bool closed = false, closingBeep = false;
+        if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+            if (g_currentServoAngle != g_targetServoAngle && (now - lastServoStepMs >= 10)) {
+                lastServoStepMs = now;
+                if (g_currentServoAngle < g_targetServoAngle) g_currentServoAngle += 2;
+                else                                         g_currentServoAngle -= 2;
+                g_doorServo.write(g_currentServoAngle);
+                closed = (g_currentServoAngle == 100 && g_doorState == DoorState::CLOSED);
+            }
 
-        if (g_doorState == DoorState::OPEN) {
-            bool boxFilled = (digitalRead(LIMIT_SWITCH_PIN) == LOW);
-            if (boxFilled != g_initialBoxState) {
-                g_doorState = DoorState::WAITING_TO_CLOSE;
-                g_boxFullTime = now;
+            if (g_doorState == DoorState::OPEN) {
+                bool boxFilled = (digitalRead(LIMIT_SWITCH_PIN) == LOW);
+                if (boxFilled != g_initialBoxState) {
+                    g_doorState = DoorState::WAITING_TO_CLOSE;
+                    g_boxFullTime = now;
+                }
+            } else if (g_doorState == DoorState::WAITING_TO_CLOSE) {
+                if (now - g_boxFullTime >= 8000) {
+                    g_targetServoAngle = 100; // Đóng nắp sau 8s
+                    g_doorState = DoorState::CLOSED;
+                    closingBeep = true;
+                }
             }
-        } else if (g_doorState == DoorState::WAITING_TO_CLOSE) {
-            if (now - g_boxFullTime >= 8000) {
-                g_targetServoAngle = 100; // Đóng nắp sau 8s
-                g_doorState = DoorState::CLOSED;
-                triggerBuzzer(1);
-            }
+            xSemaphoreGive(g_dataMutex);
         }
+        if (closed) sendUartLine("DOOR:CLOSED");
+        if (closingBeep) triggerBuzzer(1);
 
         // 5. Cập nhật Điện Áp Pin (1Hz)
         if (now - lastBatteryMs >= 1000) {
@@ -350,11 +453,20 @@ static void TaskControl(void* pvParameters) {
         }
 
         // 6. Cảnh báo Buzzer
+        int beeps = 0;
+        if (xSemaphoreTake(g_dataMutex, portMAX_DELAY)) {
+            beeps = g_buzzerBeeps;
+            if (!obs && beeps > 0) --g_buzzerBeeps;
+            xSemaphoreGive(g_dataMutex);
+        }
+        if (obs != lastObs) {
+            sendUartLine(obs ? "WARN:OBSTACLE" : "WARN:CLEAR");
+            lastObs = obs;
+        }
         if (obs) {
             digitalWrite(BUZZER_PIN, HIGH);
-        } else if (g_buzzerBeeps > 0) {
-            digitalWrite(BUZZER_PIN, (g_buzzerBeeps % 2 == 0) ? HIGH : LOW);
-            g_buzzerBeeps--;
+        } else if (beeps > 0) {
+            digitalWrite(BUZZER_PIN, (beeps % 2 == 0) ? HIGH : LOW);
         } else {
             digitalWrite(BUZZER_PIN, LOW);
         }
@@ -367,9 +479,33 @@ static void TaskControl(void* pvParameters) {
 void setup() {
     Serial.begin(115200);
     g_dataMutex = xSemaphoreCreateMutex();
+    g_uartMutex = xSemaphoreCreateMutex();
+    if (!g_dataMutex || !g_uartMutex) {
+        g_motors.init();
+        for (;;) delay(1000);
+    }
 
     Wire.begin(I2C_SDA, I2C_SCL);
-    Wire.setTimeOut(150);
+    Wire.setClock(400000);
+    Wire.setTimeOut(50);
+
+    // Khởi tạo MPU6050 & Madgwick AHRS (200Hz)
+    Wire.beginTransmission(MPU6050_ADDR);
+    Wire.write(0x6B); // PWR_MGMT_1
+    Wire.write(0x00); // Wake up
+    Wire.endTransmission(true);
+
+    Wire.beginTransmission(MPU6050_ADDR);
+    Wire.write(0x1B); // GYRO_CONFIG
+    Wire.write(0x00); // ±250 deg/s
+    Wire.endTransmission(true);
+
+    Wire.beginTransmission(MPU6050_ADDR);
+    Wire.write(0x1C); // ACCEL_CONFIG
+    Wire.write(0x00); // ±2g
+    Wire.endTransmission(true);
+
+    g_imuFilter.begin(200.0f);
 
     // Khởi tạo phần cứng đếm xung PCNT
     g_encL.init();

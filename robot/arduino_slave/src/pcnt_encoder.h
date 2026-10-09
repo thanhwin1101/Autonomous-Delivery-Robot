@@ -14,12 +14,13 @@ class PcntEncoder {
 private:
     pcnt_unit_t _unit;
     int _pulsePin;
-    int16_t _lastCount;
+    int32_t _lastCount;
+    int32_t _lastDeltaCount;
     int32_t _accumulatedCount;
 
 public:
     PcntEncoder(pcnt_unit_t unit, int pulsePin)
-        : _unit(unit), _pulsePin(pulsePin), _lastCount(0), _accumulatedCount(0) {}
+        : _unit(unit), _pulsePin(pulsePin), _lastCount(0), _lastDeltaCount(0), _accumulatedCount(0) {}
 
     void init() {
         pcnt_config_t pcnt_config = {
@@ -46,6 +47,7 @@ public:
         pcnt_counter_resume(_unit);
 
         _lastCount = 0;
+        _lastDeltaCount = 0;
         _accumulatedCount = 0;
     }
 
@@ -54,7 +56,7 @@ public:
         int16_t currentHwCount = 0;
         pcnt_get_counter_value(_unit, &currentHwCount);
 
-        int16_t delta = currentHwCount - _lastCount;
+        int32_t delta = currentHwCount - _lastCount;
         _lastCount = currentHwCount;
 
         if (forward) {
@@ -68,6 +70,7 @@ public:
             pcnt_counter_pause(_unit);
             pcnt_counter_clear(_unit);
             pcnt_counter_resume(_unit);
+            _lastDeltaCount -= currentHwCount;
             _lastCount = 0;
         }
 
@@ -79,14 +82,15 @@ public:
         int16_t currentHwCount = 0;
         pcnt_get_counter_value(_unit, &currentHwCount);
 
-        int32_t delta = currentHwCount - _lastCount;
-        _lastCount = currentHwCount;
+        int32_t delta = currentHwCount - _lastDeltaCount;
+        _lastDeltaCount = currentHwCount;
 
         if (abs(currentHwCount) > 25000) {
             pcnt_counter_pause(_unit);
             pcnt_counter_clear(_unit);
             pcnt_counter_resume(_unit);
-            _lastCount = 0;
+            _lastCount -= currentHwCount;
+            _lastDeltaCount = 0;
         }
 
         return delta;
